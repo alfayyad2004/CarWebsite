@@ -15,6 +15,7 @@ interface Vehicle {
     price_ttd: number
     status: string
     type?: string
+    reference_no?: string
 }
 
 export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle[] }) {
@@ -22,6 +23,13 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
     const [loadingId, setLoadingId] = useState<string | null>(null)
     const supabase = createClient()
     const router = useRouter()
+
+    // Sync state with props when server-side data changes (pagination/search)
+    const [prevInitial, setPrevInitial] = useState(initialVehicles)
+    if (initialVehicles !== prevInitial) {
+        setVehicles(initialVehicles)
+        setPrevInitial(initialVehicles)
+    }
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this vehicle? This cannot be undone.')) return
@@ -78,7 +86,8 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
                                 <div className="font-bold text-lg text-white">
                                     {vehicle.year} {vehicle.make} {vehicle.model}
                                 </div>
-                                <div className="text-xs text-zinc-500 font-mono mt-0.5">#{vehicle.id.slice(0, 8)}</div>
+                                <div className="text-xs text-primary font-bold mt-1">Ref: {vehicle.reference_no || 'N/A'}</div>
+                                <div className="text-[10px] text-zinc-500 font-mono mt-0.5 opacity-50">{vehicle.id}</div>
                             </div>
                             <span className={`px-2 py-1 rounded-full text-xs font-medium border
                                 ${vehicle.status === 'In Stock' ? 'bg-green-950/30 text-green-400 border-green-900/50' :
@@ -145,8 +154,9 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
                             {vehicles.map((vehicle) => (
                                 <tr key={vehicle.id} className="hover:bg-zinc-800/50 transition-colors">
                                     <td className="p-4">
-                                        <div className="font-bold text-white">{vehicle.year} {vehicle.make} {vehicle.model}</div>
-                                        <div className="text-xs text-zinc-500 font-mono mt-1">{vehicle.id.slice(0, 8)}...</div>
+                                        <div className="font-bold text-white text-sm">{vehicle.year} {vehicle.make} {vehicle.model}</div>
+                                        <div className="text-xs text-primary font-bold mt-1">Ref: {vehicle.reference_no || 'N/A'}</div>
+                                        <div className="text-[10px] text-zinc-500 font-mono mt-0.5 opacity-50">{vehicle.id}</div>
                                     </td>
                                     <td className="p-4">
                                         <select
