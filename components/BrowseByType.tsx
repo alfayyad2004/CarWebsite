@@ -10,7 +10,7 @@ const CATEGORIES = [
         description: "Fresh imports, e.g. Nissan Note, Aqua",
         href: "/inventory?condition=RORO",
         icon: Car,
-        image: "https://images.unsplash.com/photo-1596658591032-4d5154388e36?q=80&w=2070&auto=format&fit=crop", // Compact/Hatchback similar to Note
+        image: "/images/categories/nissan-note.jpg",
         color: "from-blue-600 to-blue-900"
     },
     {
@@ -18,7 +18,7 @@ const CATEGORIES = [
         description: "Quality pre-owned vehicles",
         href: "/inventory?condition=Local%20Used",
         icon: Tag,
-        image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop", // Ford/Sporty/Local looking
+        image: "/images/categories/land-cruiser.png",
         color: "from-emerald-600 to-emerald-900"
     },
     {
@@ -26,7 +26,7 @@ const CATEGORIES = [
         description: "Hilux, Ranger & Workhorses",
         href: "/inventory?type=Truck",
         icon: Truck,
-        image: "https://images.unsplash.com/photo-1566936306511-2c0697ad4887?q=80&w=2070&auto=format&fit=crop", // Pickup Truck (Hilux style)
+        image: "/images/categories/hilux.jpg",
         color: "from-orange-600 to-orange-900"
     },
     {
@@ -34,7 +34,7 @@ const CATEGORIES = [
         description: "Just landed inventory",
         href: "/inventory?sort=newest",
         icon: Sparkles,
-        image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=2070&auto=format&fit=crop", // Ford Ranger/Raptor vibe
+        image: "/images/categories/audi.png",
         color: "from-purple-600 to-purple-900"
     }
 ]
