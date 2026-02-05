@@ -26,7 +26,7 @@ export function VehicleCard({ vehicle }: { vehicle: any }) {
     // Fallback image if no images array or empty
     const imageUrl = vehicle.images && vehicle.images.length > 0
         ? vehicle.images[0]
-        : '/placeholder-car.jpg'; // Need a placeholder placeholder
+        : null; // Handling null in render
 
     return (
         <motion.div
@@ -37,13 +37,19 @@ export function VehicleCard({ vehicle }: { vehicle: any }) {
         >
             <Link href={`/inventory/${vehicle.id}`}>
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
-                    <Image
-                        src={imageUrl}
-                        alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                    {imageUrl ? (
+                        <Image
+                            src={imageUrl}
+                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-zinc-700 group-hover:bg-zinc-800 transition-colors">
+                            <span className="text-xs font-medium uppercase tracking-widest">No Image</span>
+                        </div>
+                    )}
                     <div className="absolute top-3 left-3 flex gap-2">
                         <StatusBadge status={vehicle.status} />
                         {vehicle.condition === 'Local Used' && (

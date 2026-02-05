@@ -10,7 +10,7 @@ export function Hero() {
     const [price, setPrice] = useState('');
 
     return (
-        <div className="relative h-[85vh] w-full overflow-hidden bg-black">
+        <div className="relative min-h-[85vh] w-full overflow-hidden bg-black flex flex-col justify-center">
             {/* Video Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10" />

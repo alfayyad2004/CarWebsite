@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { InventoryGrid } from '@/components/InventoryGrid'
 import { InventoryFilters } from '@/components/InventoryFilters'
+import { PaginationControls } from '@/components/PaginationControls'
 import { createClient } from '@/utils/supabase/server'
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default async function InventoryPage({
 
     let query = supabase
         .from('vehicles')
-        .select('*')
+        .select('*', { count: 'exact' })
         .order('created_at', { ascending: false })
 
     // Apply Filter Logic
@@ -25,6 +26,12 @@ export default async function InventoryPage({
     const make = searchParams['make'] as string
     const minPrice = searchParams['minPrice'] as string
     const maxPrice = searchParams['maxPrice'] as string
+
+    // Pagination Logic
+    const page = Number(searchParams['page']) || 1
+    const PAGE_SIZE = 12
+    const from = (page - 1) * PAGE_SIZE
+    const to = from + PAGE_SIZE - 1
 
     if (q) {
         query = query.textSearch('fts', q, { type: 'websearch', config: 'english' })
@@ -39,7 +46,19 @@ export default async function InventoryPage({
         query = query.lte('price_ttd', maxPrice)
     }
 
-    const { data: vehicles } = await query
+    // Get count and data in single query if possible, or correct count syntax
+    // Using select('*', { count: 'exact' }) on the builder BEFORE range() is standard
+    // But since query is already built, we need to modify it or chain correctly
+
+    // Efficient way:
+    // query.select('*', { count: 'exact' }) will mutate if it's a builder? No, it returns new builder.
+    // Let's refactor to ensure we get count and data effectively.
+
+    // We can't easily re-select on an existing SelectBuilder in some versions.
+    // Safest bet for reliability:
+    const { data: vehicles, count } = await query.range(from, to)
+
+    const totalPages = count ? Math.ceil(count / PAGE_SIZE) : 0
 
     return (
         <div className="min-h-screen bg-background text-foreground">
@@ -65,6 +84,9 @@ export default async function InventoryPage({
                     {/* Results Grid */}
                     <div className="md:col-span-3">
                         <InventoryGrid vehicles={vehicles || []} />
+                        {totalPages > 1 && (
+                            <PaginationControls totalPages={totalPages} currentPage={page} />
+                        )}
                     </div>
                 </div>
             </main>

@@ -1,5 +1,8 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { BrandMarquee } from '@/components/BrandMarquee'
+import { BrowseByType } from '@/components/BrowseByType'
+import { RecentlyAdded } from '@/components/RecentlyAdded'
 import { InventoryGrid } from '@/components/InventoryGrid'
 import { createClient } from '@/utils/supabase/server'
 
@@ -17,6 +20,9 @@ export default async function Home() {
       <Header />
       <main className="flex flex-col">
         <Hero />
+        <BrandMarquee />
+        <BrowseByType />
+        <RecentlyAdded />
 
         {/* Featured Inventory Section */}
         <section className="container mx-auto px-4 py-20">
@@ -45,25 +51,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="bg-card text-muted-foreground py-12 border-t border-border">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
-          <div>
-            <h3 className="text-white font-semibold mb-4">R&R Trading</h3>
-            <p className="mb-4">Trinidad's premier choice for RORO and locally used vehicles.</p>
-          </div>
-          <div>
-            <h3 className="text-white font-semibold mb-4">Inventory</h3>
-            <ul className="space-y-2">
-              <li><a href="/inventory" className="hover:text-primary transition-colors">All Vehicles</a></li>
-              <li><a href="/inventory?q=SUV" className="hover:text-primary transition-colors">SUVs</a></li>
-              <li><a href="/inventory?q=Sedan" className="hover:text-primary transition-colors">Sedans</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="container mx-auto px-4 pt-8 border-t border-white/5 text-center text-xs">
-          © {new Date().getFullYear()} R&R Trading. All rights reserved.
-        </div>
-      </footer>
+
     </div>
   )
 }

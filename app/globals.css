@@ -38,3 +38,4 @@ body {
   --color-border: var(--border);
   --font-sans: var(--font-outfit);
 }
+@layer utilities { .animate-scroll { animation: scroll 40s linear infinite; } } @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-33.33%); } }
