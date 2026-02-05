@@ -1,4 +1,5 @@
 import { Header } from '@/components/Header'
+import { FinancingInfo } from '@/components/FinancingInfo'
 import { Search, Banknote, PenTool, ShieldCheck, CarFront, Globe, MapPin, Settings, FileText } from 'lucide-react'
 
 export default function Services() {
@@ -128,6 +129,8 @@ export default function Services() {
                     </div>
                 </div>
             </main>
+
+            <FinancingInfo />
         </div>
     )
 }
