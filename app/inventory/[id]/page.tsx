@@ -175,7 +175,7 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                                         <Phone className="mr-2 h-5 w-5" /> Inquire on WhatsApp
                                     </Button>
                                 </a>
-                                <Button size="lg" variant="outline" className="w-full">
+                                <Button size="lg" className="w-full bg-white text-black hover:bg-gray-200 font-bold border border-white/20">
                                     Schedule Test Drive
                                 </Button>
                             </div>

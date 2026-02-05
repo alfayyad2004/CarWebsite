@@ -85,7 +85,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6, duration: 0.8 }}
-                        className="p-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl mt-8 max-w-4xl"
+                        className="relative z-20 p-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl mt-12 max-w-4xl shadow-2xl"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div className="space-y-1">
