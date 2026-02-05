@@ -142,14 +142,16 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                             {vehicle.specs && Object.keys(vehicle.specs).length > 0 && (
                                 <div className="mt-8 pt-6 border-t border-border">
                                     <h3 className="font-semibold mb-4">Features</h3>
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         {Object.entries(vehicle.specs).map(([key, value]) => (
-                                            <div key={key} className="flex items-center text-sm">
-                                                <Check className="h-4 w-4 text-green-500 mr-2" />
-                                                <span className="capitalize text-muted-foreground">{key.replace(/_/g, ' ')}:</span>
-                                                <span className="ml-1 font-medium text-foreground">
-                                                    {typeof value === 'object' ? JSON.stringify(value) : String(value)}
-                                                </span>
+                                            <div key={key} className="flex items-start text-sm py-1">
+                                                <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                                                <div className="flex flex-col">
+                                                    <span className="capitalize text-muted-foreground text-xs">{key.replace(/_/g, ' ')}</span>
+                                                    <span className="font-medium text-foreground break-words">
+                                                        {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                                                    </span>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -169,13 +171,13 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                                 </div>
                             </div>
 
-                            <div className="space-y-4 mb-8">
-                                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                                    <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white border-0">
+                            <div className="flex flex-col gap-6 mb-8">
+                                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <Button size="lg" className="w-full h-14 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white border-0 shadow-lg hover:shadow-xl transition-all">
                                         <Phone className="mr-2 h-5 w-5" /> Inquire on WhatsApp
                                     </Button>
                                 </a>
-                                <Button size="lg" className="w-full bg-white text-black hover:bg-gray-200 font-bold border border-white/20">
+                                <Button size="lg" className="w-full h-14 text-lg bg-white text-black hover:bg-gray-200 font-bold border border-white/20 shadow-md">
                                     Schedule Test Drive
                                 </Button>
                             </div>

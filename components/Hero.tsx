@@ -23,7 +23,7 @@ export function Hero() {
     }
 
     return (
-        <section className="relative h-[90vh] w-full overflow-hidden bg-black">
+        <section className="relative min-h-screen w-full bg-black flex flex-col justify-center">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -37,7 +37,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
             </div>
 
-            <div className="container relative z-10 h-full flex flex-col justify-center px-4">
+            <div className="container relative z-10 h-full flex flex-col justify-center px-4 pt-32 pb-20">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

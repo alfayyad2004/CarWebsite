@@ -11,7 +11,7 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md supports-[backdrop-filter]:bg-black/50">
+        <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md supports-[backdrop-filter]:bg-black/50">
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center space-x-2">
                     <div className="relative h-12 w-48">

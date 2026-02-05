@@ -64,7 +64,7 @@ export default async function InventoryPage({
     return (
         <div className="min-h-screen bg-background text-foreground">
             <Header />
-            <main className="container mx-auto px-4 py-12">
+            <main className="container mx-auto px-4 pt-28 pb-12">
                 <div className="mb-8">
                     <h1 className="text-4xl font-bold mb-2">Our Inventory</h1>
                     <p className="text-muted-foreground">Find the perfect vehicle for your lifestyle.</p>

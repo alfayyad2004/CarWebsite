@@ -10,7 +10,7 @@ export default function Contact() {
 
             <main>
                 {/* Header */}
-                <div className="bg-zinc-950 py-24 px-4 text-center border-b border-white/5">
+                <div className="bg-zinc-950 pt-32 pb-24 px-4 text-center border-b border-white/5">
                     <h1 className="text-5xl font-black mb-6 text-white">Get in Touch</h1>
                     <p className="text-xl text-zinc-400">We're here to help you find your perfect drive.</p>
                 </div>
