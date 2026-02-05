@@ -30,7 +30,19 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
         condition: vehicle?.condition || 'RORO',
         status: vehicle?.status || 'In Stock',
         type: vehicle?.type || 'Sedan',
-        specs: vehicle?.specs ? JSON.stringify(vehicle.specs, null, 2) : '{\n  "fuel": "Petrol",\n  "transmission": "Automatic"\n}',
+        transmission: vehicle?.transmission || 'Automatic',
+        fuel_type: vehicle?.fuel_type || 'Petrol',
+        fuel_system: vehicle?.fuel_system || '',
+        engine_size: vehicle?.engine_size || '',
+        body_color: vehicle?.body_color || '',
+        interior_color: vehicle?.interior_color || '',
+        interior_type: vehicle?.interior_type || '',
+        doors: vehicle?.doors || 5,
+        wheels: vehicle?.wheels || '',
+        sub_model: vehicle?.sub_model || '',
+        chassis_no: vehicle?.chassis_no || '',
+        reference_no: vehicle?.reference_no || '',
+        specs: vehicle?.specs ? JSON.stringify(vehicle.specs, null, 2) : '{}',
     })
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +92,8 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                 specs: JSON.parse(formData.specs), // Validate JSON
                 mileage: Number(formData.mileage),
                 price_ttd: Number(formData.price_ttd),
-                year: Number(formData.year)
+                year: Number(formData.year),
+                doors: Number(formData.doors)
             }
 
             if (isEditing && vehicle?.id) {
@@ -137,7 +150,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                         id="year"
                         type="number"
                         value={formData.year}
-                        onChange={e => setFormData({ ...formData, year: e.target.value })}
+                        onChange={e => setFormData({ ...formData, year: Number(e.target.value) })}
                         required
                     />
                 </div>
@@ -147,7 +160,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                         id="price"
                         type="number"
                         value={formData.price_ttd}
-                        onChange={e => setFormData({ ...formData, price_ttd: e.target.value })}
+                        onChange={e => setFormData({ ...formData, price_ttd: Number(e.target.value) })}
                         required
                     />
                 </div>
@@ -156,7 +169,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                     <select
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         value={formData.condition}
-                        onChange={e => setFormData({ ...formData, condition: e.target.value })}
+                        onChange={e => setFormData({ ...formData, condition: e.target.value as any })}
                     >
                         <option value="RORO">RORO</option>
                         <option value="Local Used">Local Used</option>
@@ -168,7 +181,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                         id="status"
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         value={formData.status}
-                        onChange={e => setFormData({ ...formData, status: e.target.value })}
+                        onChange={e => setFormData({ ...formData, status: e.target.value as any })}
                     >
                         <option value="In Stock">In Stock</option>
                         <option value="In Transit">In Transit</option>
@@ -181,7 +194,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                         id="type"
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         value={formData.type}
-                        onChange={e => setFormData({ ...formData, type: e.target.value })}
+                        onChange={e => setFormData({ ...formData, type: e.target.value as any })}
                     >
                         <option value="Sedan">Sedan</option>
                         <option value="SUV">SUV</option>
@@ -191,21 +204,151 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                     </select>
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="mileage">Mileage</Label>
+                    <Label htmlFor="mileage">Mileage (km)</Label>
                     <Input
                         id="mileage"
                         type="number"
                         value={formData.mileage}
-                        onChange={e => setFormData({ ...formData, mileage: e.target.value })}
+                        onChange={e => setFormData({ ...formData, mileage: Number(e.target.value) })}
                         required
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="reference_no">Reference No.</Label>
+                    <Input
+                        id="reference_no"
+                        value={formData.reference_no}
+                        onChange={e => setFormData({ ...formData, reference_no: e.target.value })}
+                        placeholder="e.g. WN1864"
+                    />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-border">
+                <div className="space-y-2">
+                    <Label htmlFor="engine_size">Engine (e.g. 1500 CCs)</Label>
+                    <Input
+                        id="engine_size"
+                        value={formData.engine_size}
+                        onChange={e => setFormData({ ...formData, engine_size: e.target.value })}
+                        placeholder="1.5L"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="transmission">Transmission</Label>
+                    <select
+                        id="transmission"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                        value={formData.transmission}
+                        onChange={e => setFormData({ ...formData, transmission: e.target.value })}
+                    >
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                        <option value="CVT">CVT</option>
+                        <option value="Dual Clutch">Dual Clutch</option>
+                    </select>
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="fuel_type">Fuel Type</Label>
+                    <select
+                        id="fuel_type"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                        value={formData.fuel_type}
+                        onChange={e => setFormData({ ...formData, fuel_type: e.target.value })}
+                    >
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="fuel_system">Fuel System</Label>
+                    <Input
+                        id="fuel_system"
+                        value={formData.fuel_system}
+                        onChange={e => setFormData({ ...formData, fuel_system: e.target.value })}
+                        placeholder="Direct Injection / Hybrid"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="body_color">Exterior Color</Label>
+                    <Input
+                        id="body_color"
+                        value={formData.body_color}
+                        onChange={e => setFormData({ ...formData, body_color: e.target.value })}
+                        placeholder="White"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="interior_color">Interior Color</Label>
+                    <Input
+                        id="interior_color"
+                        value={formData.interior_color}
+                        onChange={e => setFormData({ ...formData, interior_color: e.target.value })}
+                        placeholder="Black"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="interior_type">Interior Type</Label>
+                    <Input
+                        id="interior_type"
+                        value={formData.interior_type}
+                        onChange={e => setFormData({ ...formData, interior_type: e.target.value })}
+                        placeholder="Leather / Fabric"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="doors">Doors</Label>
+                    <Input
+                        id="doors"
+                        type="number"
+                        value={formData.doors}
+                        onChange={e => setFormData({ ...formData, doors: Number(e.target.value) })}
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="wheels">Wheels</Label>
+                    <Input
+                        id="wheels"
+                        value={formData.wheels}
+                        onChange={e => setFormData({ ...formData, wheels: e.target.value })}
+                        placeholder="Alloy Rims"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="sub_model">Sub Model / Trim</Label>
+                    <Input
+                        id="sub_model"
+                        value={formData.sub_model}
+                        onChange={e => setFormData({ ...formData, sub_model: e.target.value })}
+                        placeholder="M-Sport / G-Edition"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="chassis_no">Chassis No.</Label>
+                    <Input
+                        id="chassis_no"
+                        value={formData.chassis_no}
+                        onChange={e => setFormData({ ...formData, chassis_no: e.target.value })}
+                        placeholder="WBA... (Full VIN)"
                     />
                 </div>
             </div>
 
             <div className="space-y-4">
                 <Label>Features & Specifications</Label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {['Air Conditioning', 'Power Windows', 'Power Locks', 'Power Steering', 'Reverse Camera', 'Bluetooth', 'Leather Seats', 'Sunroof', 'Push to Start', 'Alloy Wheels', 'Fog Lights', 'Turbo'].map((feature) => {
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                        'Power Steering', 'Power Mirror', 'Power Seat', 'Power Window',
+                        'Mirror Indicator', 'Driver Passenger Airbag', 'Air Condition', 'Dual A/C',
+                        'Lane Departure Warning', 'Steering Controls', 'ABS', 'Push-To-Start',
+                        'Rear Spoiler', 'Rear Wiper', 'Collision Warning', 'Hybrid',
+                        'Power Tailgate / Trunk', 'Park Sensors', 'Side Impact Airbags',
+                        'DRL Daytime Running Light', 'Traction Control (TRC)',
+                        'Supports Apple CarPlay', '360 Camera', 'Sunroof', 'Leather Seats',
+                        'Alloy Wheels', 'Fog Lights', 'Turbo'
+                    ].map((feature) => {
                         const currentSpecs = formData.specs ? JSON.parse(formData.specs) : {}
                         const isChecked = !!currentSpecs[feature]
 

@@ -17,11 +17,17 @@ export interface Vehicle {
     images?: string[]
     transmission?: string
     fuel_type?: string
+    fuel_system?: string
     engine_size?: string
     body_color?: string
     interior_color?: string
+    interior_type?: string
     doors?: number
     seats?: number
+    wheels?: string
+    sub_model?: string
+    chassis_no?: string
+    reference_no?: string
     created_at?: string
     updated_at?: string
 }

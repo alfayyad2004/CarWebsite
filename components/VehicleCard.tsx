@@ -83,7 +83,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                     </h3>
                     <div className="flex justify-between text-sm text-muted-foreground mb-4">
                         <span>{vehicle.mileage?.toLocaleString()} km</span>
-                        <span>Automatic</span> {/* Clean this up if generic */}
+                        <span>{vehicle.transmission || 'Automatic'} • {vehicle.fuel_type || 'Petrol'}</span>
                     </div>
 
                     <div className="w-full h-10 flex items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium">

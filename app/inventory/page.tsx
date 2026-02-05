@@ -4,6 +4,7 @@ import { InventoryFilters } from '@/components/InventoryFilters'
 import { PaginationControls } from '@/components/PaginationControls'
 import { InventoryTabs } from '@/components/InventoryTabs'
 import { createClient } from '@/utils/supabase/server'
+import Link from 'next/link'
 
 export const metadata = {
     title: 'Inventory - R&R Trading',
@@ -90,12 +91,12 @@ export default async function InventoryPage({
                         ) : (
                             <div className="flex flex-col items-center justify-center py-20 bg-zinc-900/50 rounded-2xl border border-dashed border-zinc-800">
                                 <div className="text-muted-foreground mb-4">No vehicles found matching your criteria.</div>
-                                <button
-                                    onClick={() => window.location.href = '/inventory'}
+                                <Link
+                                    href="/inventory"
                                     className="text-primary hover:underline font-medium"
                                 >
                                     Clear all filters
-                                </button>
+                                </Link>
                             </div>
                         )}
                     </div>

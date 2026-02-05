@@ -44,21 +44,23 @@ export function InventoryTabs() {
     }
 
     return (
-        <div className="flex flex-wrap gap-2 mb-8 p-1 bg-zinc-900/50 rounded-xl border border-white/5 w-fit">
-            {TABS.map((tab) => (
-                <button
-                    key={tab.label}
-                    onClick={() => handleTabClick(tab)}
-                    className={cn(
-                        "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300",
-                        activeValue === tab.value
-                            ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
-                            : "text-zinc-400 hover:text-white hover:bg-white/5"
-                    )}
-                >
-                    {tab.label}
-                </button>
-            ))}
+        <div className="w-full overflow-hidden mb-8">
+            <div className="flex flex-nowrap gap-2 p-1 bg-zinc-900/50 rounded-xl border border-white/5 overflow-x-auto scrollbar-hide pb-2 md:pb-1">
+                {TABS.map((tab) => (
+                    <button
+                        key={tab.label}
+                        onClick={() => handleTabClick(tab)}
+                        className={cn(
+                            "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0",
+                            activeValue === tab.value
+                                ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
+                                : "text-zinc-400 hover:text-white hover:bg-white/5"
+                        )}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

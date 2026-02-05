@@ -11,26 +11,34 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { ImageGallery } from '@/components/ImageGallery'
 
 // Helper to get icon for spec key
 const getSpecIcon = (key: string) => {
     const k = key.toLowerCase()
-    if (k.includes('fuel')) return <Fuel className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('transmission') || k.includes('gear')) return <Settings className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('mileage') || k.includes('km')) return <Gauge className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('year')) return <Calendar className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('color') || k.includes('paint')) return <Palette className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('seat') || k.includes('passenger')) return <Users className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('door')) return <DoorOpen className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('engine') || k.includes('cyl')) return <Zap className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('drive') || k.includes('traction')) return <Combine className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('brake') || k.includes('abs')) return <Disc className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('ac') || k.includes('climate') || k.includes('air')) return <ThermometerSnowflake className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('bag') || k.includes('safety')) return <ShieldCheck className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('radio') || k.includes('sound') || k.includes('audio')) return <Radio className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-    if (k.includes('leather') || k.includes('interior')) return <Armchair className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('fuel')) return <Fuel className="h-4 w-4" />
+    if (k.includes('transmission') || k.includes('gear')) return <Settings className="h-4 w-4" />
+    if (k.includes('mileage') || k.includes('km')) return <Gauge className="h-4 w-4" />
+    if (k.includes('year')) return <Calendar className="h-4 w-4" />
+    if (k.includes('color') || k.includes('paint')) return <Palette className="h-4 w-4" />
+    if (k.includes('seat') || k.includes('passenger')) return <Users className="h-4 w-4" />
+    if (k.includes('door')) return <DoorOpen className="h-4 w-4" />
+    if (k.includes('engine') || k.includes('cyl')) return <Zap className="h-4 w-4" />
+    if (k.includes('drive') || k.includes('traction')) return <Combine className="h-4 w-4" />
+    if (k.includes('brake') || k.includes('abs')) return <Disc className="h-4 w-4" />
+    if (k.includes('ac') || k.includes('climate') || k.includes('air')) return <ThermometerSnowflake className="h-4 w-4" />
+    if (k.includes('bag') || k.includes('safety')) return <ShieldCheck className="h-4 w-4" />
+    if (k.includes('radio') || k.includes('sound') || k.includes('audio')) return <Radio className="h-4 w-4" />
+    if (k.includes('leather') || k.includes('interior')) return <Armchair className="h-4 w-4" />
 
-    return <CircleDot className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    return <CircleDot className="h-4 w-4" />
+}
+
+// Helper to filter and format specs
+const formatSpecValue = (value: any) => {
+    if (value === null || value === undefined || value === '') return null
+    if (typeof value === 'boolean') return value ? 'Yes' : 'No'
+    return String(value)
 }
 
 export default async function VehicleDetails({ params }: { params: Promise<{ id: string }> }) {
@@ -92,74 +100,92 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Main Content - Images & Key Info */}
+                    {/* Main Content - Image Gallery & Key Info */}
                     <div className="lg:col-span-2 space-y-8">
-                        {/* Hero Image */}
-                        <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10">
-                            <Image
-                                src={vehicle.images?.[0] || '/placeholder-car.jpg'}
-                                alt={`${vehicle.make} ${vehicle.model}`}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            <div className="absolute top-4 left-4">
-                                {vehicle.status === 'In Stock' && (
-                                    <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">In Stock</span>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Gallery (Thumbnail placeholders) */}
-                        {vehicle.images && vehicle.images.length > 1 && (
-                            <div className="grid grid-cols-4 gap-4">
-                                {vehicle.images.slice(1, 5).map((img: string, idx: number) => (
-                                    <div key={idx} className="relative aspect-video rounded-lg overflow-hidden border border-white/10 hover:border-primary cursor-pointer">
-                                        <Image src={img} alt="Gallery" fill className="object-cover" />
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                        <ImageGallery
+                            images={vehicle.images || []}
+                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                        />
 
                         {/* Description & Specs */}
-                        <div className="bg-card rounded-xl p-8 border border-border">
-                            <h2 className="text-2xl font-bold mb-6">Vehicle Specifications</h2>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                <div className="flex flex-col">
-                                    <span className="text-muted-foreground text-sm flex items-center mb-1"><Calendar className="h-4 w-4 mr-1" /> Year</span>
-                                    <span className="font-semibold">{vehicle.year}</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-muted-foreground text-sm flex items-center mb-1"><Settings className="h-4 w-4 mr-1" /> Make</span>
-                                    <span className="font-semibold">{vehicle.make}</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-muted-foreground text-sm flex items-center mb-1"><Settings className="h-4 w-4 mr-1" /> Model</span>
-                                    <span className="font-semibold">{vehicle.model}</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-muted-foreground text-sm flex items-center mb-1"><Gauge className="h-4 w-4 mr-1" /> Mileage</span>
-                                    <span className="font-semibold">{vehicle.mileage?.toLocaleString()} km</span>
+                        <div className="space-y-12">
+                            {/* Car Details Section */}
+                            <div className="bg-zinc-900/50 rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl">
+                                <h2 className="text-xl font-bold mb-8 text-primary uppercase tracking-widest flex items-center gap-2">
+                                    <Combine className="h-5 w-5" />
+                                    Car Details
+                                </h2>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-0">
+                                    {[
+                                        { label: 'Reference', value: vehicle.reference_no || `#${vehicle.id.slice(0, 6).toUpperCase()}`, icon: <ShieldCheck className="h-4 w-4" /> },
+                                        { label: 'Year', value: vehicle.year, icon: <Calendar className="h-4 w-4" /> },
+                                        { label: 'Price', value: `$${vehicle.price_ttd?.toLocaleString()} TTD`, icon: <Palette className="h-4 w-4" /> },
+                                        { label: 'Body', value: vehicle.type, icon: <Combine className="h-4 w-4" /> },
+                                        { label: 'Mileage', value: `${vehicle.mileage?.toLocaleString()} Kms`, icon: <Gauge className="h-4 w-4" /> },
+                                        { label: 'Engine', value: vehicle.engine_size, icon: <Zap className="h-4 w-4" /> },
+                                        { label: 'Transmission', value: vehicle.transmission, icon: <Settings className="h-4 w-4" /> },
+                                        { label: 'Fuel Type', value: vehicle.fuel_type, icon: <Fuel className="h-4 w-4" /> },
+                                        { label: 'Fuel System', value: vehicle.fuel_system, icon: <Settings className="h-4 w-4" /> },
+                                        { label: 'Color', value: vehicle.body_color, icon: <Palette className="h-4 w-4" /> },
+                                        { label: 'Interior Color', value: vehicle.interior_color, icon: <Armchair className="h-4 w-4" /> },
+                                        { label: 'Interior Type', value: vehicle.interior_type, icon: <Armchair className="h-4 w-4" /> },
+                                        { label: 'Doors', value: `${vehicle.doors} Door`, icon: <DoorOpen className="h-4 w-4" /> },
+                                        { label: 'Wheels', value: vehicle.wheels, icon: <Disc className="h-4 w-4" /> },
+                                        { label: 'Status', value: vehicle.status, icon: <Check className="h-4 w-4" /> },
+                                        { label: 'Sub Model', value: vehicle.sub_model, icon: <Combine className="h-4 w-4" /> },
+                                        { label: 'Chassis No.', value: vehicle.chassis_no, icon: <Settings className="h-4 w-4" /> },
+                                    ].map((item, idx) => (
+                                        <div key={idx} className="group">
+                                            <div className="flex items-center justify-between py-4 group-hover:bg-white/[0.02] transition-colors px-2 rounded-lg">
+                                                <div className="flex items-center gap-3">
+                                                    <span className="text-primary/60">{item.icon}</span>
+                                                    <span className="text-zinc-400 text-sm font-medium">{item.label}</span>
+                                                </div>
+                                                <span className="font-bold text-sm text-white text-right break-all ml-4">
+                                                    {item.value || 'N/A'}
+                                                </span>
+                                            </div>
+                                            <div className="h-[1px] bg-white/10 w-full" />
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
-                            {/* JSON Specs */}
+                            {/* Features Section */}
                             {vehicle.specs && Object.keys(vehicle.specs).length > 0 && (
-                                <div className="mt-8 pt-6 border-t border-border">
-                                    <h3 className="font-semibold mb-4">Features</h3>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                        {Object.entries(vehicle.specs).map(([key, value]) => (
-                                            <div key={key} className="flex items-start text-sm py-1">
-                                                {getSpecIcon(key)}
-                                                <div className="flex flex-col">
-                                                    <span className="capitalize text-muted-foreground text-xs">{key.replace(/_/g, ' ')}</span>
-                                                    <span className="font-medium text-foreground break-words">
-                                                        {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                                <div className="bg-zinc-900/50 rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl">
+                                    <h2 className="text-xl font-bold mb-8 text-primary uppercase tracking-widest flex items-center gap-2">
+                                        <Zap className="h-5 w-5" />
+                                        Features
+                                    </h2>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                        {Object.entries(vehicle.specs)
+                                            .filter(([key, value]) => {
+                                                const formatted = formatSpecValue(value)
+                                                return formatted !== null && key.toLowerCase() !== 'description'
+                                            })
+                                            .map(([key, value]) => (
+                                                <div key={key} className="flex items-center gap-3 group/feat">
+                                                    <div className="p-1.5 rounded-full bg-primary/10 text-primary group-hover/feat:bg-primary group-hover/feat:text-white transition-all">
+                                                        <Check className="h-3 w-3" />
+                                                    </div>
+                                                    <span className="text-sm font-medium text-zinc-300 capitalize">
+                                                        {key.replace(/_/g, ' ')}
                                                     </span>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
                                     </div>
+                                </div>
+                            )}
+
+                            {/* Description Section */}
+                            {vehicle.specs?.description && (
+                                <div className="bg-zinc-900/50 rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl">
+                                    <h2 className="text-xl font-bold mb-4 text-primary uppercase tracking-widest">Description</h2>
+                                    <p className="text-zinc-400 leading-relaxed whitespace-pre-wrap">
+                                        {vehicle.specs.description}
+                                    </p>
                                 </div>
                             )}
                         </div>
@@ -167,27 +193,27 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
 
                     {/* Sidebar - Actions & Financing */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-card rounded-xl p-6 border border-border shadow-xl sticky top-24">
+                        <div className="bg-card rounded-2xl p-6 border border-white/5 shadow-xl sticky top-28 backdrop-blur-md">
                             <div className="mb-6">
                                 <h1 className="text-3xl font-bold mb-2">{vehicle.year} {vehicle.make} {vehicle.model}</h1>
-                                <p className="text-sm text-muted-foreground mb-4">{vehicle.condition} Vehicle</p>
+                                <p className="text-sm text-muted-foreground mb-4">{vehicle.condition} Vehicle • {vehicle.status}</p>
                                 <div className="text-4xl font-bold text-primary mb-1">
                                     ${vehicle.price_ttd?.toLocaleString()} <span className="text-lg font-normal text-muted-foreground">TTD</span>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-6 mb-8">
+                            <div className="flex flex-col gap-4 mb-8">
                                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full">
-                                    <Button size="lg" className="w-full h-14 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white border-0 shadow-lg hover:shadow-xl transition-all">
+                                    <Button size="lg" className="w-full h-14 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white border-0 shadow-lg hover:grow transition-all">
                                         <Phone className="mr-2 h-5 w-5" /> Inquire on WhatsApp
                                     </Button>
                                 </a>
-                                <Button size="lg" className="w-full h-14 text-lg bg-white text-black hover:bg-gray-200 font-bold border border-white/20 shadow-md">
+                                <Button size="lg" variant="outline" className="w-full h-14 text-lg font-bold border-white/10 hover:bg-white/5">
                                     Schedule Test Drive
                                 </Button>
                             </div>
 
-                            <div className="border-t border-border pt-6">
+                            <div className="border-t border-white/10 pt-6">
                                 <h3 className="font-semibold mb-4 text-lg">Financing Calculator</h3>
                                 <LoanCalculator initialPrice={vehicle.price_ttd} />
                             </div>

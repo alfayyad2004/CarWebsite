@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -27,8 +28,18 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-black text-white">
-            <div className="w-full max-w-md p-8 bg-zinc-900 rounded-lg border border-zinc-800">
+        <div className="min-h-screen flex items-center justify-center bg-black text-white p-4">
+            <div className="w-full max-w-md p-8 bg-zinc-900 rounded-3xl border border-zinc-800 shadow-2xl">
+                <div className="flex justify-center mb-8">
+                    <div className="relative w-24 h-24">
+                        <Image
+                            src="/logo.png"
+                            alt="R&R Trading Logo"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                </div>
                 <h1 className="text-2xl font-bold mb-6 text-center">Admin Access</h1>
                 {error && <p className="text-red-500 mb-4 text-sm text-center">{error}</p>}
                 <form onSubmit={handleLogin} className="space-y-4">
