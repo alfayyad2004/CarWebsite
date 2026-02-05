@@ -75,7 +75,7 @@ export function Header() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'tween', duration: 0.3 }}
-                        className="fixed inset-0 z-50 bg-black flex flex-col md:hidden"
+                        className="fixed inset-0 z-[100] bg-zinc-950 flex flex-col md:hidden h-[100dvh]"
                     >
                         <div className="flex items-center justify-between p-4 border-b border-white/10">
                             <Link href="/" onClick={() => setIsMenuOpen(false)}>
