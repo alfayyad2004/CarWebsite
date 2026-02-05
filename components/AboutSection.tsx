@@ -51,12 +51,16 @@ export function AboutSection() {
                                 className="object-contain"
                             />
                         </div>
-                        <div className="relative aspect-square w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                            <Image
-                                src="/about-image-1.png"
-                                alt="R&R Trading Logistics"
-                                fill
-                                className="object-cover"
+                        <div className="relative aspect-square w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3295.5088149650605!2d-61.454206!3d10.425171!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c35f1697eddceb9%3A0x726440e5be197803!2sR%26R%20Trading%20Company%20Limited!5e1!3m2!1sen!2sus!4v1770303599860!5m2!1sen!2sus"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full h-full"
                             />
                         </div>
                         {/* Decorative elements */}
