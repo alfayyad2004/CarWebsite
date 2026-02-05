@@ -27,8 +27,8 @@ export function Hero() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/hero-bg.png"
-                    alt="Toyota Hilux Background"
+                    src="/hero-landcruiser.png"
+                    alt="Toyota Land Cruiser Background"
                     fill
                     className="object-cover opacity-60"
                     priority
