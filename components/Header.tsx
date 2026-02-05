@@ -14,7 +14,7 @@ export function Header() {
         <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/95 backdrop-blur-xl supports-[backdrop-filter]:bg-black/60">
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center space-x-2">
-                    <div className="relative h-12 w-48">
+                    <div className="relative h-16 w-60">
                         <Image
                             src="/logo.png"
                             alt="R&R Trading"

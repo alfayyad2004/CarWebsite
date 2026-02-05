@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Footer() {
@@ -5,7 +6,14 @@ export function Footer() {
         <footer className="bg-card text-muted-foreground py-12 border-t border-border mt-auto">
             <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-sm">
                 <div className="col-span-1 md:col-span-2">
-                    <h3 className="text-white font-bold text-lg mb-4">R&R Trading</h3>
+                    <div className="relative h-16 w-60 mb-4">
+                        <Image
+                            src="/logo.png"
+                            alt="R&R Trading"
+                            fill
+                            className="object-contain object-left"
+                        />
+                    </div>
                     <p className="mb-6 max-w-sm text-zinc-400">
                         Trinidad's premier choice for RORO and locally used vehicles. We ensure quality, transparency, and the best prices in the market.
                     </p>

@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header'
-import { Search, Banknote, PenTool, ShieldCheck, CarFront, Globe } from 'lucide-react'
+import { Search, Banknote, PenTool, ShieldCheck, CarFront, Globe, MapPin, Settings, FileText } from 'lucide-react'
 
 export default function Services() {
     return (
@@ -24,60 +24,107 @@ export default function Services() {
             </section>
 
             <main className="container mx-auto px-4 py-20 -mt-20 relative z-30">
-                <div className="grid md:grid-cols-3 gap-8">
-                    {/* Service 1 */}
-                    <div className="p-8 bg-card rounded-2xl border border-white/10 hover:border-primary/50 transition-colors shadow-2xl group">
-                        <div className="h-14 w-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                            <Globe className="h-7 w-7" />
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Showroom/Stocklist */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <CarFront className="h-6 w-6" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Global Sourcing</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            We leverage our international network to locate high-quality RORO vehicles from Japan and Singapore, ensuring verified mileage and pristine condition.
+                        <h3 className="text-xl font-bold mb-3 text-white">Showroom/Stocklist</h3>
+                        <p className="text-sm text-zinc-400">
+                            Visit our showroom to shop for used or brand new vehicles accompanied by quick, easy payments and services.
                         </p>
                     </div>
 
-                    {/* Service 2 */}
-                    <div className="p-8 bg-card rounded-2xl border border-white/10 hover:border-primary/50 transition-colors shadow-2xl group">
-                        <div className="h-14 w-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                            <Banknote className="h-7 w-7" />
+                    {/* Custom/New Vehicle Orders */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <Globe className="h-6 w-6" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Financing Assistance</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Our team works directly with major financial institutions to secure competitive interest rates and flexible terms for your vehicle loan application.
+                        <h3 className="text-xl font-bold mb-3 text-white">Custom/New Orders</h3>
+                        <p className="text-sm text-zinc-400">
+                            Request any Rollon-Rolloff or brand new automobile(s). Simply visit our contact page and give us a call.
                         </p>
                     </div>
 
-                    {/* Service 3 */}
-                    <div className="p-8 bg-card rounded-2xl border border-white/10 hover:border-primary/50 transition-colors shadow-2xl group">
-                        <div className="h-14 w-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                            <ShieldCheck className="h-7 w-7" />
+                    {/* Key Replacement */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <PenTool className="h-6 w-6" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Warranty & Support</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Drive with confidence. We offer comprehensive warranty packages and dedicated after-sales support for maintenance and parts.
+                        <h3 className="text-xl font-bold mb-3 text-white">Key Programming</h3>
+                        <p className="text-sm text-zinc-400">
+                            Car key broken or lost? We offer professional key repair and programming services.
                         </p>
                     </div>
 
-                    {/* Service 4 */}
-                    <div className="p-8 bg-card rounded-2xl border border-white/10 hover:border-primary/50 transition-colors shadow-2xl group">
-                        <div className="h-14 w-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                            <PenTool className="h-7 w-7" />
+                    {/* Services and Repairs */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <Settings className="h-6 w-6" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Registration Handling</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Skip the hassle. We handle all Licensing Office requirements, transfers, and registration paperwork on your behalf.
+                        <h3 className="text-xl font-bold mb-3 text-white">Services & Repairs</h3>
+                        <p className="text-sm text-zinc-400">
+                            We are equipped with professional and experienced mechanics to meet your routine maintenance needs.
                         </p>
                     </div>
 
-                    {/* Service 5 */}
-                    <div className="p-8 bg-card rounded-2xl border border-white/10 hover:border-primary/50 transition-colors shadow-2xl group">
-                        <div className="h-14 w-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                            <CarFront className="h-7 w-7" />
+                    {/* GPS Tracking */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <MapPin className="h-6 w-6" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Trade-Ins</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Upgrade your ride. We accept local used vehicle trade-ins at fair market valuations to help offset the cost of your new purchase.
+                        <h3 className="text-xl font-bold mb-3 text-white">GPS Tracking</h3>
+                        <p className="text-sm text-zinc-400">
+                            State of the art tracking solutions for personal, vehicular and commercial solutions.
                         </p>
+                    </div>
+
+                    {/* Financial Institutions */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <Banknote className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-white">Financial Institutions</h3>
+                        <p className="text-sm text-zinc-400">
+                            R&R Trading Co. Ltd. is linked to various financial institutions to aid in loan processing and acquisition.
+                        </p>
+                    </div>
+
+                    {/* Insurance Policies - PDF */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <FileText className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-white">Insurance Policies</h3>
+                        <p className="text-sm text-zinc-400 mb-4">
+                            Get online quote. Download our insurance quotation form below.
+                        </p>
+                        <a
+                            href="/forms/insurance-quotation-form.pdf"
+                            download
+                            className="text-sm text-primary hover:text-white underline decoration-primary/50 hover:decoration-white transition-all"
+                        >
+                            Download Form PDF
+                        </a>
+                    </div>
+
+                    {/* Warranty Offers - PDF */}
+                    <div className="p-6 bg-zinc-900/50 rounded-xl border border-white/5 hover:border-primary/50 transition-colors group">
+                        <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:scale-105 transition-transform">
+                            <ShieldCheck className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-white">Warranty Offers</h3>
+                        <p className="text-sm text-zinc-400 mb-4">
+                            All our vehicles are covered by a complete warranty coverage plan.
+                        </p>
+                        <a
+                            href="/forms/warranty-ministryOfTrade.pdf"
+                            download
+                            className="text-sm text-primary hover:text-white underline decoration-primary/50 hover:decoration-white transition-all"
+                        >
+                            Download Warranty PDF
+                        </a>
                     </div>
                 </div>
             </main>

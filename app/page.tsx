@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { AboutSection } from '@/components/AboutSection'
 import { BrandMarquee } from '@/components/BrandMarquee'
 import { BrowseByType } from '@/components/BrowseByType'
 import { RecentlyAdded } from '@/components/RecentlyAdded'
@@ -21,6 +22,7 @@ export default async function Home() {
       <main className="flex flex-col">
         <Hero />
         <BrandMarquee />
+        <AboutSection />
         <BrowseByType />
         <RecentlyAdded />
 

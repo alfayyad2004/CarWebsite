@@ -27,8 +27,8 @@ export function Hero() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2070&auto=format&fit=crop"
-                    alt="Luxury Car Background"
+                    src="https://images.unsplash.com/photo-1605218427306-633ba88c9ae3?q=80&w=2070&auto=format&fit=crop"
+                    alt="Toyota Hilux Background"
                     fill
                     className="object-cover opacity-60"
                     priority

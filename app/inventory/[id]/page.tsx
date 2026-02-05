@@ -5,27 +5,32 @@ import { Button } from '@/components/ui/button'
 import { Header } from '@/components/Header'
 import { LoanCalculator } from '@/components/LoanCalculator'
 import { ShareButton } from '@/components/ShareButton'
-import { Phone, ArrowLeft, Check, Calendar, Gauge, Settings } from 'lucide-react'
+import {
+    Phone, ArrowLeft, Check, Calendar, Gauge, Settings,
+    Fuel, Palette, Users, Combine, Zap, Disc, Wind, ShieldCheck, Radio, ThermometerSnowflake, Armchair, DoorOpen, CircleDot
+} from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 
-// Dynamic Metadata
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-    const { id } = await params
-    const supabase = await createClient()
-    const { data: vehicle } = await supabase.from('vehicles').select('*').eq('id', id).single()
+// Helper to get icon for spec key
+const getSpecIcon = (key: string) => {
+    const k = key.toLowerCase()
+    if (k.includes('fuel')) return <Fuel className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('transmission') || k.includes('gear')) return <Settings className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('mileage') || k.includes('km')) return <Gauge className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('year')) return <Calendar className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('color') || k.includes('paint')) return <Palette className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('seat') || k.includes('passenger')) return <Users className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('door')) return <DoorOpen className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('engine') || k.includes('cyl')) return <Zap className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('drive') || k.includes('traction')) return <Combine className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('brake') || k.includes('abs')) return <Disc className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('ac') || k.includes('climate') || k.includes('air')) return <ThermometerSnowflake className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('bag') || k.includes('safety')) return <ShieldCheck className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('radio') || k.includes('sound') || k.includes('audio')) return <Radio className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+    if (k.includes('leather') || k.includes('interior')) return <Armchair className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
 
-    if (!vehicle) {
-        return { title: 'Vehicle Not Found' }
-    }
-
-    return {
-        title: `${vehicle.year} ${vehicle.make} ${vehicle.model} - R&R Trading`,
-        description: `Buy this ${vehicle.year} ${vehicle.make} ${vehicle.model} in Trinidad. Price: $${vehicle.price_ttd?.toLocaleString()} TTD. ${vehicle.condition}.`,
-        openGraph: {
-            images: vehicle.images?.[0] ? [vehicle.images[0]] : [],
-        },
-    }
+    return <CircleDot className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
 }
 
 export default async function VehicleDetails({ params }: { params: Promise<{ id: string }> }) {
@@ -74,7 +79,7 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 pt-28 pb-12">
                 <div className="flex justify-between items-center mb-6">
                     <Link href="/inventory" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors">
                         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Inventory
@@ -145,7 +150,7 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         {Object.entries(vehicle.specs).map(([key, value]) => (
                                             <div key={key} className="flex items-start text-sm py-1">
-                                                <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                                                {getSpecIcon(key)}
                                                 <div className="flex flex-col">
                                                     <span className="capitalize text-muted-foreground text-xs">{key.replace(/_/g, ' ')}</span>
                                                     <span className="font-medium text-foreground break-words">
