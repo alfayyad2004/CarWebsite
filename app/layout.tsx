@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
-import Script from 'next/script';
+import { TidioChat } from "@/components/TidioChat";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -27,7 +27,7 @@ export default function RootLayout({
       >
         {children}
         <Footer />
-        <Script src="//code.tidio.co/tnej2zbqwbmf6fzlpbadomv1w4pve9i6.js" strategy="afterInteractive" />
+        <TidioChat />
       </body>
     </html>
   );

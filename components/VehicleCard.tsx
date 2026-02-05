@@ -10,14 +10,14 @@ import { Vehicle } from '@/types/database';
 // Simple Badge component
 function StatusBadge({ status }: { status: string }) {
     const colors: Record<string, string> = {
-        'In Stock': 'bg-green-500/20 text-green-400 border-green-500/50',
-        'In Transit': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
-        'Sold': 'bg-red-500/20 text-red-400 border-red-500/50',
+        'In Stock': 'bg-green-600/90 text-white border-green-400',
+        'In Transit': 'bg-amber-500/90 text-white border-amber-300',
+        'Sold': 'bg-red-600/90 text-white border-red-400',
     };
-    const colorClass = colors[status] || 'bg-gray-500/20 text-gray-400';
+    const colorClass = colors[status] || 'bg-zinc-600/90 text-white';
 
     return (
-        <span className={`px-2 py-1 rounded text-xs font-medium border ${colorClass} uppercase tracking-wider`}>
+        <span className={`px-2.5 py-1 rounded-md text-[11px] font-black border backdrop-blur-md shadow-xl ${colorClass} uppercase tracking-[0.05em]`}>
             {status}
         </span>
     );
@@ -64,7 +64,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                         <div className="absolute top-3 left-3 flex flex-wrap gap-2">
                             <StatusBadge status={vehicle.status || 'In Stock'} />
                             {vehicle.condition === 'Local Used' && (
-                                <span className="px-2 py-1 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/50 uppercase tracking-tighter">
+                                <span className="px-2.5 py-1 rounded-md text-[11px] font-black bg-blue-600/90 text-white border border-blue-400 backdrop-blur-md shadow-xl uppercase tracking-[0.05em]">
                                     Local Used
                                 </span>
                             )}
