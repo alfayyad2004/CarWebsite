@@ -18,10 +18,10 @@ export function Header() {
                         <Image
                             src="/logo.png"
                             alt="R&R Trading"
-                            width={240}
-                            height={64}
+                            fill
                             className="object-contain"
                             priority
+                            sizes="240px"
                         />
                     </div>
                 </Link>
