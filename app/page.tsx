@@ -22,7 +22,6 @@ export default async function Home() {
       <main className="flex flex-col">
         <Hero />
         <BrandMarquee />
-        <AboutSection />
         <BrowseByType />
         <RecentlyAdded />
 
@@ -51,6 +50,8 @@ export default async function Home() {
             </a>
           </div>
         </section>
+
+        <AboutSection />
       </main>
 
 
