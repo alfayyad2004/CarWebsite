@@ -193,7 +193,7 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
 
                     {/* Sidebar - Actions & Financing */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-card rounded-2xl p-6 border border-white/5 shadow-xl sticky top-28 backdrop-blur-md">
+                        <div className="bg-card rounded-2xl p-6 border border-white/5 shadow-xl lg:sticky lg:top-28 backdrop-blur-md">
                             <div className="mb-6">
                                 <h1 className="text-3xl font-bold mb-2">{vehicle.year} {vehicle.make} {vehicle.model}</h1>
                                 <p className="text-sm text-muted-foreground mb-4">{vehicle.condition} Vehicle • {vehicle.status}</p>

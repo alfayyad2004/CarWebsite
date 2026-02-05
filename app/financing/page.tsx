@@ -21,7 +21,7 @@ export default function Financing() {
             <main className="container mx-auto px-4 pb-20">
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Left Column: Calculator */}
-                    <div className="sticky top-24">
+                    <div className="lg:sticky lg:top-24">
                         <LoanCalculator />
                     </div>
 
