@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from 'lucide-react'; // Placeholder for Badge component if using shadcn, or simple div
 import { motion } from 'framer-motion';
+import { Vehicle } from '@/types/database';
 
 // Simple Badge component since we didn't add shadcn badge
 // Simple Badge component
@@ -23,7 +24,7 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 interface VehicleCardProps {
-    vehicle: any;
+    vehicle: Vehicle;
 }
 
 const item = {
@@ -60,7 +61,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                         </div>
                     )}
                     <div className="absolute top-3 left-3 flex gap-2">
-                        <StatusBadge status={vehicle.status} />
+                        <StatusBadge status={vehicle.status || 'In Stock'} />
                         {vehicle.condition === 'Local Used' && (
                             <span className="px-2 py-1 rounded text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/50 uppercase tracking-wider">
                                 Local Used

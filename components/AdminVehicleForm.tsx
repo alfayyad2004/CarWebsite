@@ -9,9 +9,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { X, Upload, Loader2 } from "lucide-react"
 import Image from "next/image"
+import { Vehicle } from "@/types/database"
 
 interface VehicleFormProps {
-    vehicle?: any // Use proper type if available, but 'any' is fine for rapid dev here
+    vehicle?: Partial<Vehicle>  // Partial because form fields may not all be filled
     isEditing?: boolean
 }
 

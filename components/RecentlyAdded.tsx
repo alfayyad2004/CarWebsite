@@ -5,9 +5,10 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
+import { Vehicle } from '@/types/database'
 
 export function RecentlyAdded() {
-    const [vehicles, setVehicles] = useState<any[]>([])
+    const [vehicles, setVehicles] = useState<Vehicle[]>([])
     const [loading, setLoading] = useState(true)
     const supabase = createClient()
 

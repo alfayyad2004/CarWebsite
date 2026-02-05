@@ -13,7 +13,7 @@ export function ShareButton({ title, text, url }: { title: string, text: string,
                     url
                 })
             } catch (error) {
-                console.log('Error sharing:', error)
+                // Silently fail - user can try again if needed
             }
         } else {
             // Fallback: Copy to clipboard

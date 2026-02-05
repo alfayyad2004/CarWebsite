@@ -2,9 +2,10 @@
 
 import { VehicleCard } from './VehicleCard'
 import { motion } from 'framer-motion'
+import { Vehicle } from '@/types/database'
 
 interface InventoryGridProps {
-    vehicles: any[]
+    vehicles: Vehicle[]
 }
 
 const container = {

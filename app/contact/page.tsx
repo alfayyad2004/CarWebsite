@@ -70,7 +70,6 @@ export default function Contact() {
                         </div>
 
                         {/* Form */}
-                        {/* Form */}
                         <div className="bg-card p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
                             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                             <ContactForm />

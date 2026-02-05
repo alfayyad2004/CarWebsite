@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next'
-import { createClient } from '@/utils/supabase/client'
+import { createClient } from '@/utils/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const supabase = createClient()
+    const supabase = await createClient()
     const baseUrl = 'https://rr-trading.com' // Replace with your actual domain
 
     // 1. Static Pages
