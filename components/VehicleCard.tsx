@@ -85,9 +85,9 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                         <span>Automatic</span> {/* Clean this up if generic */}
                     </div>
 
-                    <Button className="w-full" variant="outline">
+                    <div className="w-full h-10 flex items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium">
                         View Details
-                    </Button>
+                    </div>
                 </div>
             </Link>
         </motion.div >

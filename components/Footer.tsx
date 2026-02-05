@@ -23,9 +23,9 @@ export function Footer() {
                     <h3 className="text-white font-semibold mb-4">Inventory</h3>
                     <ul className="space-y-3">
                         <li><Link href="/inventory" className="hover:text-primary transition-colors">All Vehicles</Link></li>
-                        <li><Link href="/inventory?q=SUV" className="hover:text-primary transition-colors">SUVs</Link></li>
-                        <li><Link href="/inventory?q=Sedan" className="hover:text-primary transition-colors">Sedans</Link></li>
-                        <li><Link href="/inventory?q=Truck" className="hover:text-primary transition-colors">Trucks</Link></li>
+                        <li><Link href="/inventory?type=SUV" className="hover:text-primary transition-colors">SUVs</Link></li>
+                        <li><Link href="/inventory?type=Sedan" className="hover:text-primary transition-colors">Sedans</Link></li>
+                        <li><Link href="/inventory?type=Truck" className="hover:text-primary transition-colors">Trucks</Link></li>
                     </ul>
                 </div>
 

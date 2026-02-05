@@ -2,7 +2,8 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import { AdminVehicleForm } from '@/components/AdminVehicleForm'
 
-export default async function EditVehiclePage({ params }: { params: { id: string } }) {
+export default async function EditVehiclePage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
@@ -13,7 +14,7 @@ export default async function EditVehiclePage({ params }: { params: { id: string
     const { data: vehicle } = await supabase
         .from('vehicles')
         .select('*')
-        .eq('id', params.id)
+        .eq('id', id)
         .single()
 
     if (!vehicle) {

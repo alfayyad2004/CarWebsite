@@ -105,11 +105,11 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
                             </select>
 
                             <div className="flex items-center gap-2">
-                                <Link href={`/admin/edit/${vehicle.id}`}>
-                                    <Button size="icon" variant="outline" className="h-9 w-9 border-zinc-700 bg-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-700">
+                                <Button size="icon" variant="outline" className="h-9 w-9 border-zinc-700 bg-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-700" asChild>
+                                    <Link href={`/admin/edit/${vehicle.id}`}>
                                         <Edit className="h-4 w-4" />
-                                    </Button>
-                                </Link>
+                                    </Link>
+                                </Button>
                                 <Button
                                     size="icon"
                                     variant="destructive"
@@ -167,11 +167,11 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
                                     </td>
                                     <td className="p-4 text-right whitespace-nowrap">
                                         <div className="flex justify-end items-center space-x-2">
-                                            <Link href={`/admin/edit/${vehicle.id}`}>
-                                                <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-white hover:bg-zinc-700">
+                                            <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-white hover:bg-zinc-700" asChild>
+                                                <Link href={`/admin/edit/${vehicle.id}`}>
                                                     <Edit className="h-4 w-4" />
-                                                </Button>
-                                            </Link>
+                                                </Link>
+                                            </Button>
                                             <Button
                                                 size="icon"
                                                 variant="destructive"

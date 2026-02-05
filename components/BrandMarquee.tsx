@@ -37,7 +37,7 @@ export function BrandMarquee() {
                 {/* Second copy for seamless loop */}
                 <div className="flex items-center space-x-16 mx-8">
                     {BRANDS.map((brand) => (
-                        <span key={`duplicate-${brand}`} className="text-2xl font-black tracking-widest text-zinc-700 hover:text-white transition-colors cursor-default select-none">
+                        <span key={`duplicate-${brand}`} className="text-2xl font-black tracking-widest text-zinc-500 hover:text-white transition-colors cursor-default select-none">
                             {brand}
                         </span>
                     ))}
@@ -46,7 +46,7 @@ export function BrandMarquee() {
                 {/* Third copy for ultra-wide screens */}
                 <div className="flex items-center space-x-16 mx-8">
                     {BRANDS.map((brand) => (
-                        <span key={`triplicate-${brand}`} className="text-2xl font-black tracking-widest text-zinc-700 hover:text-white transition-colors cursor-default select-none">
+                        <span key={`triplicate-${brand}`} className="text-2xl font-black tracking-widest text-zinc-500 hover:text-white transition-colors cursor-default select-none">
                             {brand}
                         </span>
                     ))}

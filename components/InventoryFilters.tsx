@@ -19,13 +19,26 @@ export function InventoryFilters() {
     const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') || '')
     const [make, setMake] = useState(searchParams.get('make') || '')
 
+    // Sync state with URL if it changes (e.g. from tabs or back button)
+    useEffect(() => {
+        setSearch(searchParams.get('q') || '')
+        setMinPrice(searchParams.get('minPrice') || '')
+        setMaxPrice(searchParams.get('maxPrice') || '')
+        setMake(searchParams.get('make') || '')
+    }, [searchParams])
+
     // Debounce search/filter application or Apply Button
     const applyFilters = () => {
-        const params = new URLSearchParams()
-        if (search) params.set('q', search)
-        if (minPrice) params.set('minPrice', minPrice)
-        if (maxPrice) params.set('maxPrice', maxPrice)
-        if (make) params.set('make', make)
+        const params = new URLSearchParams(searchParams.toString())
+
+        // Update specific filters
+        if (search) params.set('q', search); else params.delete('q')
+        if (minPrice) params.set('minPrice', minPrice); else params.delete('minPrice')
+        if (maxPrice) params.set('maxPrice', maxPrice); else params.delete('maxPrice')
+        if (make) params.set('make', make); else params.delete('make')
+
+        // Reset page to 1 when filters change
+        params.delete('page')
 
         router.push(`/inventory?${params.toString()}`)
     }

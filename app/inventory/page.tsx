@@ -13,31 +13,30 @@ export const metadata = {
 export default async function InventoryPage({
     searchParams,
 }: {
-    searchParams: { [key: string]: string | string[] | undefined }
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+    const filters = await searchParams
     const supabase = await createClient()
 
-    let query = supabase
-        .from('vehicles')
-        .select('*', { count: 'exact' })
-        .order('created_at', { ascending: false })
-
     // Apply Filter Logic
-    const q = searchParams['q'] as string
-    const make = searchParams['make'] as string
-    const minPrice = searchParams['minPrice'] as string
-    const maxPrice = searchParams['maxPrice'] as string
-    const condition = searchParams['condition'] as string
-    const type = searchParams['type'] as string
+    const q = filters['q'] as string
+    const make = filters['make'] as string
+    const minPrice = filters['minPrice'] as string
+    const maxPrice = filters['maxPrice'] as string
+    const condition = filters['condition'] as string
+    const type = filters['type'] as string
 
     // Pagination Logic
-    const page = Number(searchParams['page']) || 1
+    const page = Number(filters['page']) || 1
     const PAGE_SIZE = 12
     const from = (page - 1) * PAGE_SIZE
     const to = from + PAGE_SIZE - 1
 
+    let query = supabase
+        .from('vehicles')
+        .select('*', { count: 'exact' })
+
     if (q) {
-        // Search in Make OR Model using ilike for partial matching
         query = query.or(`make.ilike.%${q}%,model.ilike.%${q}%`)
     }
     if (make) {
@@ -56,17 +55,9 @@ export default async function InventoryPage({
         query = query.lte('price_ttd', maxPrice)
     }
 
-    // Get count and data in single query if possible, or correct count syntax
-    // Using select('*', { count: 'exact' }) on the builder BEFORE range() is standard
-    // But since query is already built, we need to modify it or chain correctly
-
-    // Efficient way:
-    // query.select('*', { count: 'exact' }) will mutate if it's a builder? No, it returns new builder.
-    // Let's refactor to ensure we get count and data effectively.
-
-    // We can't easily re-select on an existing SelectBuilder in some versions.
-    // Safest bet for reliability:
-    const { data: vehicles, count } = await query.range(from, to)
+    const { data: vehicles, count, error } = await query
+        .order('created_at', { ascending: false })
+        .range(from, to)
 
     const totalPages = count ? Math.ceil(count / PAGE_SIZE) : 0
 
@@ -81,22 +72,31 @@ export default async function InventoryPage({
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
                     {/* Sidebar Filters */}
-                    <div className="hidden md:block">
+                    <aside className="md:block">
                         <InventoryFilters />
-                    </div>
-
-                    {/* Mobile Filters (You might want a collapsible Sheet here later, but stacking is okay for now) */}
-                    <div className="md:hidden">
-                        {/* Simplified mobile view or just show Filters */}
-                        <InventoryFilters />
-                    </div>
+                    </aside>
 
                     {/* Results Grid */}
                     <div className="md:col-span-3">
                         <InventoryTabs />
-                        <InventoryGrid vehicles={vehicles || []} />
-                        {totalPages > 1 && (
-                            <PaginationControls totalPages={totalPages} currentPage={page} />
+
+                        {vehicles && vehicles.length > 0 ? (
+                            <>
+                                <InventoryGrid vehicles={vehicles} />
+                                {totalPages > 1 && (
+                                    <PaginationControls totalPages={totalPages} currentPage={page} />
+                                )}
+                            </>
+                        ) : (
+                            <div className="flex flex-col items-center justify-center py-20 bg-zinc-900/50 rounded-2xl border border-dashed border-zinc-800">
+                                <div className="text-muted-foreground mb-4">No vehicles found matching your criteria.</div>
+                                <button
+                                    onClick={() => window.location.href = '/inventory'}
+                                    className="text-primary hover:underline font-medium"
+                                >
+                                    Clear all filters
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
