@@ -95,8 +95,10 @@ export function LoanCalculator({ initialPrice = 100000 }: { initialPrice?: numbe
                     </p>
                 </div>
 
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white" asChild>
-                    <a href="/contact">Apply for Financing</a>
+                <Button className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-500/20" asChild>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfplMGX4N4Kk6NaqLVSsw507SWmNEeyHCfc95lQIIjyMVk3IQ/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                        Apply for Financing
+                    </a>
                 </Button>
             </div>
         </div>

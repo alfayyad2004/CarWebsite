@@ -52,13 +52,14 @@ export function FinancingInfo() {
                                 <li key={i} className="flex items-start text-zinc-300">
                                     <Car className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
                                     {item.link ? (
-                                        <Link
-                                            href={item.link}
-                                            className="hover:text-primary transition-colors underline decoration-zinc-700 hover:decoration-primary"
-                                            {...(item.download ? { download: true } : {})}
+                                        <a
+                                            href="https://docs.google.com/forms/d/e/1FAIpQLSfplMGX4N4Kk6NaqLVSsw507SWmNEeyHCfc95lQIIjyMVk3IQ/viewform?usp=header"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-primary transition-colors underline decoration-zinc-700 hover:decoration-primary font-bold"
                                         >
                                             {item.text}
-                                        </Link>
+                                        </a>
                                     ) : (
                                         <span>{item.text}</span>
                                     )}

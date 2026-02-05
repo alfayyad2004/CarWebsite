@@ -63,7 +63,9 @@ export default function Financing() {
                                         2
                                     </span>
                                     <h4 className="font-semibold text-white">Application</h4>
-                                    <p className="text-sm text-muted-foreground mt-1">Submit your documents to our financial partners.</p>
+                                    <p className="text-sm text-muted-foreground mt-1">
+                                        Fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSfplMGX4N4Kk6NaqLVSsw507SWmNEeyHCfc95lQIIjyMVk3IQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">online financing form</a> to get started.
+                                    </p>
                                 </li>
                                 <li className="ml-6">
                                     <span className="absolute -left-3 flex items-center justify-center w-6 h-6 bg-zinc-800 rounded-full ring-4 ring-black text-xs">

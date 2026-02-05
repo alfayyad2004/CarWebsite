@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
-import { ArrowRight, ShieldCheck, Search } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Search, BadgeDollarSign, Phone } from 'lucide-react'
 
 export function Hero() {
     const router = useRouter()
@@ -74,10 +74,17 @@ export function Hero() {
                                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </Button>
-                        <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all" asChild>
-                            <Link href="/contact">
-                                Get Financing
-                            </Link>
+                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-green-600 hover:bg-green-700 text-white transition-all hover:scale-105 shadow-lg shadow-green-500/20 group" asChild>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfplMGX4N4Kk6NaqLVSsw507SWmNEeyHCfc95lQIIjyMVk3IQ/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                                <BadgeDollarSign className="mr-2 h-5 w-5" />
+                                Apply for Financing
+                            </a>
+                        </Button>
+                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-105 shadow-lg shadow-white/10 group" asChild>
+                            <a href="https://wa.me/18686811447" target="_blank" rel="noopener noreferrer">
+                                <Phone className="mr-2 h-5 w-5" />
+                                WhatsApp Us
+                            </a>
                         </Button>
                     </div>
 

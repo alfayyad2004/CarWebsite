@@ -44,50 +44,52 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         : null;
 
     return (
-        <motion.div variants={item} whileHover={{ y: -5 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link href={`/inventory/${vehicle.id}`}>
-                <div className="relative aspect-[16/9] w-full overflow-hidden">
-                    {imageUrl ? (
-                        <Image
-                            src={imageUrl}
-                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                    ) : (
-                        <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-zinc-700 group-hover:bg-zinc-800 transition-colors">
-                            <span className="text-xs font-medium uppercase tracking-widest">No Image</span>
-                        </div>
-                    )}
-                    <div className="absolute top-3 left-3 flex gap-2">
-                        <StatusBadge status={vehicle.status || 'In Stock'} />
-                        {vehicle.condition === 'Local Used' && (
-                            <span className="px-2 py-1 rounded text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/50 uppercase tracking-wider">
-                                Local Used
-                            </span>
+        <motion.div variants={item} whileHover={{ y: -5 }} transition={{ type: 'spring', stiffness: 300 }} className="h-full">
+            <Link href={`/inventory/${vehicle.id}`} className="block h-full group">
+                <div className="bg-zinc-900/40 border border-white/5 rounded-2xl overflow-hidden h-full flex flex-col hover:border-primary/30 transition-colors shadow-lg">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                        {imageUrl ? (
+                            <Image
+                                src={imageUrl}
+                                alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-zinc-700 group-hover:bg-zinc-800 transition-colors">
+                                <span className="text-xs font-medium uppercase tracking-widest">No Image</span>
+                            </div>
                         )}
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                        <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <StatusBadge status={vehicle.status || 'In Stock'} />
+                            {vehicle.condition === 'Local Used' && (
+                                <span className="px-2 py-1 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/50 uppercase tracking-tighter">
+                                    Local Used
+                                </span>
+                            )}
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
-                    <div className="absolute bottom-3 right-3">
-                        <span className="text-xl font-bold text-white drop-shadow-md">
-                            ${vehicle.price_ttd?.toLocaleString()} TTD
-                        </span>
-                    </div>
-                </div>
-
-                <div className="p-5">
-                    <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                        {vehicle.year} {vehicle.make} {vehicle.model}
-                    </h3>
-                    <div className="flex justify-between text-sm text-muted-foreground mb-4">
-                        <span>{vehicle.mileage?.toLocaleString()} km</span>
-                        <span>{vehicle.transmission || 'Automatic'} • {vehicle.fuel_type || 'Petrol'}</span>
+                        <div className="absolute bottom-3 right-3">
+                            <span className="text-xl font-bold text-white drop-shadow-lg">
+                                ${vehicle.price_ttd?.toLocaleString()} TTD
+                            </span>
+                        </div>
                     </div>
 
-                    <div className="w-full h-10 flex items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium">
-                        View Details
+                    <div className="p-5 flex flex-col flex-1">
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors line-clamp-1">
+                            {vehicle.year} {vehicle.make} {vehicle.model}
+                        </h3>
+                        <div className="flex justify-between text-xs text-zinc-400 mb-6">
+                            <span className="flex items-center gap-1 font-medium">{vehicle.mileage?.toLocaleString()} km</span>
+                            <span className="font-medium text-primary/80">{vehicle.transmission || 'Automatic'} • {vehicle.fuel_type || 'Petrol'}</span>
+                        </div>
+
+                        <div className="mt-auto w-full h-11 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all font-bold text-sm">
+                            View Details
+                        </div>
                     </div>
                 </div>
             </Link>

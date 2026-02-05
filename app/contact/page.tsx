@@ -28,9 +28,9 @@ export default function Contact() {
                                             <Phone className="h-6 w-6 text-primary" />
                                         </div>
                                         <div>
-                                            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Call/WhatsApp</p>
-                                            <p className="text-xl font-bold text-white">+1 (868) 123-4567</p>
-                                            <p className="text-lg text-zinc-400">+1 (868) 765-4321</p>
+                                            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Call / WhatsApp</p>
+                                            <p className="text-xl font-bold text-white">636-1313</p>
+                                            <p className="text-lg text-zinc-400">Whatsapp: 681-1447</p>
                                         </div>
                                     </div>
 
@@ -40,7 +40,7 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Email Us</p>
-                                            <p className="text-xl font-medium text-white">sales@rollon-rolloff.com</p>
+                                            <p className="text-xl font-medium text-white">rrtrading2@yahoo.com</p>
                                         </div>
                                     </div>
 
@@ -50,20 +50,35 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Visit Our Showroom</p>
-                                            <p className="text-lg text-white">123 Auto Avenue, Chaguanas</p>
+                                            <p className="text-lg text-white">41 Southern Main Road, Mc Bean, Couva</p>
                                             <p className="text-zinc-500 mt-1">Trinidad & Tobago</p>
                                         </div>
                                     </div>
 
-                                    <div className="flex items-start">
-                                        <div className="bg-primary/20 p-4 rounded-full mr-6">
-                                            <Clock className="h-6 w-6 text-primary" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Opening Hours</p>
-                                            <p className="text-white"><span className="w-24 inline-block text-zinc-500">Mon - Fri:</span> 8:00 AM - 5:00 PM</p>
-                                            <p className="text-white"><span className="w-24 inline-block text-zinc-500">Sat:</span> 9:00 AM - 2:00 PM</p>
-                                        </div>
+                                    <div className="grid grid-cols-1 gap-6 pt-4 border-t border-white/5">
+                                        <a href="https://www.facebook.com/randrtradingltd/" target="_blank" rel="noopener noreferrer" className="flex items-center group">
+                                            <div className="bg-zinc-900 p-3 rounded-2xl mr-4 group-hover:bg-primary/20 transition-colors">
+                                                <Facebook className="h-5 w-5 text-zinc-400 group-hover:text-primary" />
+                                            </div>
+                                            <span className="font-medium text-zinc-400 group-hover:text-white transition-colors">Like Us On Facebook</span>
+                                        </a>
+                                        <a href="https://www.instagram.com/randrtradingco.ltd" target="_blank" rel="noopener noreferrer" className="flex items-center group">
+                                            <div className="bg-zinc-900 p-3 rounded-2xl mr-4 group-hover:bg-primary/20 transition-colors">
+                                                <Instagram className="h-5 w-5 text-zinc-400 group-hover:text-primary" />
+                                            </div>
+                                            <span className="font-medium text-zinc-400 group-hover:text-white transition-colors">Follow Us On Instagram</span>
+                                        </a>
+                                        <a href="https://www.google.com/search?q=r%26r+trading+company+limited&rlz=1C1CHWA_enTT643TT643&oq=r%26r+tr&aqs=chrome.4.69i57j69i61l3j69i59l2.5069j0j7&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer" className="flex items-center group">
+                                            <div className="bg-zinc-900 p-3 rounded-2xl mr-4 group-hover:bg-primary/20 transition-colors">
+                                                <svg className="h-5 w-5 text-zinc-400 group-hover:text-primary" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M12.48 10.92v3.28h4.74c-.2 1.06-.9 1.95-2.04 2.68v2.23h3.3c1.92-1.78 3.02-4.4 3.02-7.51 0-.69-.05-1.35-.18-1.99H12.48z" />
+                                                    <path d="M12.48 24c3.24 0 5.95-1.08 7.93-2.91l-3.3-2.23c-.92.62-2.1.99-4.63.99-3.55 0-6.56-2.4-7.63-5.64H1.41v2.33C3.39 20.45 7.6 24 12.48 24z" />
+                                                    <path d="M4.85 14.21c-.28-.84-.44-1.74-.44-2.68s.16-1.84.44-2.68V6.52H1.41C.51 8.16 0 10.02 0 12s.51 3.84 1.41 5.48l3.44-2.67z" />
+                                                    <path d="M12.48 4.75c1.76 0 3.35.61 4.6 1.8l3.45-3.45C18.39 1.2 15.69 0 12.48 0 7.6 0 3.39 3.55 1.41 7.65l3.44 2.67c1.07-3.24 4.08-5.64 7.63-5.64z" />
+                                                </svg>
+                                            </div>
+                                            <span className="font-medium text-zinc-400 group-hover:text-white transition-colors">Rate Us On Google</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
