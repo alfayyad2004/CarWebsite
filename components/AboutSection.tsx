@@ -42,7 +42,15 @@ export function AboutSection() {
                         </div>
                     </div>
 
-                    <div className="relative">
+                    <div className="relative flex flex-col items-center justify-center">
+                        <div className="relative h-24 w-64 mb-8">
+                            <Image
+                                src="/logo.png"
+                                alt="R&R Trading Logo"
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
                         <div className="relative aspect-square w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                             <Image
                                 src="/about-image-1.png"
