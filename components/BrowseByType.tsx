@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Car, Truck, Sparkles, Tag } from 'lucide-react'
 
 const CATEGORIES = [
@@ -9,6 +10,7 @@ const CATEGORIES = [
         description: "Fresh imports, pristine condition",
         href: "/inventory?condition=RORO",
         icon: Car,
+        image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2070&auto=format&fit=crop", // Clean white car/moden
         color: "from-blue-600 to-blue-900"
     },
     {
@@ -16,6 +18,7 @@ const CATEGORIES = [
         description: "Quality pre-owned vehicles",
         href: "/inventory?condition=Local%20Used",
         icon: Tag,
+        image: "https://images.unsplash.com/photo-1503376763036-066120622c74?q=80&w=2070&auto=format&fit=crop", // Street setting
         color: "from-emerald-600 to-emerald-900"
     },
     {
@@ -23,6 +26,7 @@ const CATEGORIES = [
         description: "Heavy duty workhorses",
         href: "/inventory?type=Truck",
         icon: Truck,
+        image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop", // Truck
         color: "from-orange-600 to-orange-900"
     },
     {
@@ -30,6 +34,7 @@ const CATEGORIES = [
         description: "Just landed in Trinidad",
         href: "/inventory?sort=newest",
         icon: Sparkles,
+        image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2070&auto=format&fit=crop", // Luxury/Showroom
         color: "from-purple-600 to-purple-900"
     }
 ]
@@ -47,22 +52,34 @@ export function BrowseByType() {
                         <Link
                             key={category.title}
                             href={category.href}
-                            className="group relative h-64 rounded-2xl overflow-hidden border border-white/10 block"
+                            className="group relative h-80 rounded-2xl overflow-hidden border border-white/10 block"
                         >
-                            {/* Background with Gradient */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+                            {/* Background Image */}
+                            <div className="absolute inset-0">
+                                <Image
+                                    src={category.image}
+                                    alt={category.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                />
+                            </div>
+
+                            {/* Gradient Overlay for Text Readability */}
+                            <div className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-80 mix-blend-multiply transition-opacity duration-500`} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                             {/* Content */}
-                            <div className="relative h-full p-6 flex flex-col justify-end z-10">
-                                <category.icon className="h-10 w-10 text-white mb-4 opacity-80 group-hover:scale-110 transition-transform duration-300" />
-                                <h3 className="text-2xl font-bold text-white mb-1">{category.title}</h3>
-                                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <div className="relative h-full p-8 flex flex-col justify-end z-10">
+                                <category.icon className="h-12 w-12 text-white mb-4 opacity-90 group-hover:scale-110 transition-transform duration-300" />
+                                <h3 className="text-2xl font-bold text-white mb-2">{category.title}</h3>
+                                <p className="text-sm text-gray-200 opacity-90 transform translate-y-0 transition-all duration-300">
                                     {category.description}
                                 </p>
                             </div>
 
-                            {/* Hover Glow */}
-                            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {/* Hover Border Glow */}
+                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/20 rounded-2xl transition-all duration-300" />
                         </Link>
                     ))}
                 </div>
