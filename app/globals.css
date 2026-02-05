@@ -14,7 +14,8 @@
   :root {
     --background: #050505;
     --foreground: #ededed;
-    --primary: #ef4444; /* Brighter red for dark mode */
+    --primary: #ef4444;
+    /* Brighter red for dark mode */
     --card: #121212;
     --card-foreground: #ededed;
     --border: #262626;
@@ -38,4 +39,27 @@ body {
   --color-border: var(--border);
   --font-sans: var(--font-outfit);
 }
-@layer utilities { .animate-scroll { animation: scroll 40s linear infinite; } } @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-33.33%); } }
+
+@layer utilities {
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+    /* Faster on mobile */
+  }
+}
+
+@media (min-width: 768px) {
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+    /* Slower on desktop */
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.33%);
+  }
+}
