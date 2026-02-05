@@ -54,7 +54,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                                 alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                sizes="(max-width: 768px) 400px, (max-width: 1200px) 400px, 400px"
                             />
                         ) : (
                             <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-zinc-700 group-hover:bg-zinc-800 transition-colors">

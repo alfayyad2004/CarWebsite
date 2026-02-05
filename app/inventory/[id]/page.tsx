@@ -138,11 +138,11 @@ export default async function VehicleDetails({ params }: { params: Promise<{ id:
                                     ].map((item, idx) => (
                                         <div key={idx} className="group">
                                             <div className="flex items-center justify-between py-4 group-hover:bg-white/[0.02] transition-colors px-2 rounded-lg">
-                                                <div className="flex items-center gap-3">
+                                                <div className="flex items-center gap-3 shrink-0">
                                                     <span className="text-primary/60">{item.icon}</span>
                                                     <span className="text-zinc-400 text-sm font-medium">{item.label}</span>
                                                 </div>
-                                                <span className="font-bold text-sm text-white text-right break-all ml-4">
+                                                <span className="font-bold text-sm text-white text-right ml-4">
                                                     {item.value || 'N/A'}
                                                 </span>
                                             </div>

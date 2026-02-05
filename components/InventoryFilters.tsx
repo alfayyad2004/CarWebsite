@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { createClient } from '@/utils/supabase/client'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -18,6 +19,7 @@ export function InventoryFilters() {
     const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') || '')
     const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') || '')
     const [make, setMake] = useState(searchParams.get('make') || '')
+    const [availableMakes, setAvailableMakes] = useState<string[]>([])
 
     // Sync state with URL if it changes (e.g. from tabs or back button)
     useEffect(() => {
@@ -25,6 +27,20 @@ export function InventoryFilters() {
         setMinPrice(searchParams.get('minPrice') || '')
         setMaxPrice(searchParams.get('maxPrice') || '')
         setMake(searchParams.get('make') || '')
+
+        // Fetch dynamic makes
+        async function fetchMakes() {
+            const supabase = createClient()
+            const { data } = await supabase
+                .from('vehicles')
+                .select('make')
+                .neq('status', 'Sold')
+            if (data) {
+                const uniqueMakes = Array.from(new Set(data.map(v => v.make))).filter(Boolean).sort()
+                setAvailableMakes(uniqueMakes)
+            }
+        }
+        fetchMakes()
     }, [searchParams])
 
     // Debounce search/filter application or Apply Button
@@ -75,12 +91,9 @@ export function InventoryFilters() {
                             onChange={(e) => setMake(e.target.value)}
                         >
                             <option value="">All Makes</option>
-                            <option value="Toyota">Toyota</option>
-                            <option value="Honda">Honda</option>
-                            <option value="Nissan">Nissan</option>
-                            <option value="Mazda">Mazda</option>
-                            <option value="Suzuki">Suzuki</option>
-                            {/* Add more as needed or fetch dynamically */}
+                            {availableMakes.map(m => (
+                                <option key={m} value={m}>{m}</option>
+                            ))}
                         </select>
                     </div>
 

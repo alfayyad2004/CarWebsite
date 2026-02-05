@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/utils/supabase/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -13,6 +14,23 @@ export function Hero() {
     const [make, setMake] = useState('')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
+    const [availableMakes, setAvailableMakes] = useState<string[]>([])
+
+    useEffect(() => {
+        const fetchMakes = async () => {
+            const supabase = createClient()
+            const { data } = await supabase
+                .from('vehicles')
+                .select('make')
+                .neq('status', 'Sold') // Only show makes currently available or in transit
+
+            if (data) {
+                const uniqueMakes = Array.from(new Set(data.map(v => v.make))).filter(Boolean).sort()
+                setAvailableMakes(uniqueMakes)
+            }
+        }
+        fetchMakes()
+    }, [])
 
     const handleSearch = () => {
         const params = new URLSearchParams()
@@ -32,7 +50,7 @@ export function Hero() {
                     fill
                     className="object-cover opacity-60"
                     priority
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1920px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
@@ -105,12 +123,9 @@ export function Hero() {
                                     onChange={(e) => setMake(e.target.value)}
                                 >
                                     <option value="">Any Make</option>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Nissan">Nissan</option>
-                                    <option value="Honda">Honda</option>
-                                    <option value="Ford">Ford</option>
-                                    <option value="Hyundai">Hyundai</option>
-                                    <option value="Kia">Kia</option>
+                                    {availableMakes.map(m => (
+                                        <option key={m} value={m}>{m}</option>
+                                    ))}
                                 </select>
                             </div>
 
