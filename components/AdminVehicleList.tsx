@@ -14,6 +14,7 @@ interface Vehicle {
     year: number
     price_ttd: number
     status: string
+    type?: string
 }
 
 export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle[] }) {

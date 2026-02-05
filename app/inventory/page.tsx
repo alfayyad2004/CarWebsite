@@ -2,6 +2,7 @@ import { Header } from '@/components/Header'
 import { InventoryGrid } from '@/components/InventoryGrid'
 import { InventoryFilters } from '@/components/InventoryFilters'
 import { PaginationControls } from '@/components/PaginationControls'
+import { InventoryTabs } from '@/components/InventoryTabs'
 import { createClient } from '@/utils/supabase/server'
 
 export const metadata = {
@@ -26,6 +27,8 @@ export default async function InventoryPage({
     const make = searchParams['make'] as string
     const minPrice = searchParams['minPrice'] as string
     const maxPrice = searchParams['maxPrice'] as string
+    const condition = searchParams['condition'] as string
+    const type = searchParams['type'] as string
 
     // Pagination Logic
     const page = Number(searchParams['page']) || 1
@@ -39,6 +42,12 @@ export default async function InventoryPage({
     }
     if (make) {
         query = query.eq('make', make)
+    }
+    if (condition) {
+        query = query.eq('condition', condition)
+    }
+    if (type) {
+        query = query.eq('type', type)
     }
     if (minPrice) {
         query = query.gte('price_ttd', minPrice)
@@ -84,6 +93,7 @@ export default async function InventoryPage({
 
                     {/* Results Grid */}
                     <div className="md:col-span-3">
+                        <InventoryTabs />
                         <InventoryGrid vehicles={vehicles || []} />
                         {totalPages > 1 && (
                             <PaginationControls totalPages={totalPages} currentPage={page} />

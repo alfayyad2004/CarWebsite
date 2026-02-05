@@ -28,6 +28,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
         mileage: vehicle?.mileage || '',
         condition: vehicle?.condition || 'RORO',
         status: vehicle?.status || 'In Stock',
+        type: vehicle?.type || 'Sedan',
         specs: vehicle?.specs ? JSON.stringify(vehicle.specs, null, 2) : '{\n  "fuel": "Petrol",\n  "transmission": "Automatic"\n}',
     })
 
@@ -163,6 +164,7 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                 <div className="space-y-2">
                     <Label htmlFor="status">Status</Label>
                     <select
+                        id="status"
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         value={formData.status}
                         onChange={e => setFormData({ ...formData, status: e.target.value })}
@@ -170,6 +172,21 @@ export function AdminVehicleForm({ vehicle, isEditing = false }: VehicleFormProp
                         <option value="In Stock">In Stock</option>
                         <option value="In Transit">In Transit</option>
                         <option value="Sold">Sold</option>
+                    </select>
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="type">Vehicle Type (Body)</Label>
+                    <select
+                        id="type"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        value={formData.type}
+                        onChange={e => setFormData({ ...formData, type: e.target.value })}
+                    >
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Truck">Truck/Pickup</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Van">Van</option>
                     </select>
                 </div>
                 <div className="space-y-2">
