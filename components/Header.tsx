@@ -4,14 +4,14 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Phone, Search, Menu, X } from 'lucide-react'
+import { Phone, Search, Menu, X, CarFront, Wrench, BadgeDollarSign, Mail } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md supports-[backdrop-filter]:bg-black/50">
+        <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/95 backdrop-blur-xl supports-[backdrop-filter]:bg-black/60">
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center space-x-2">
                     <div className="relative h-12 w-48">
@@ -27,16 +27,20 @@ export function Header() {
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center space-x-8">
-                    <Link href="/inventory" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                    <Link href="/inventory" className="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center">
+                        <CarFront className="mr-2 h-4 w-4" />
                         Inventory
                     </Link>
-                    <Link href="/services" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                    <Link href="/services" className="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center">
+                        <Wrench className="mr-2 h-4 w-4" />
                         Services
                     </Link>
-                    <Link href="/financing" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                    <Link href="/financing" className="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center">
+                        <BadgeDollarSign className="mr-2 h-4 w-4" />
                         Financing
                     </Link>
-                    <Link href="/contact" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                    <Link href="/contact" className="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center">
+                        <Mail className="mr-2 h-4 w-4" />
                         Contact
                     </Link>
                 </nav>
