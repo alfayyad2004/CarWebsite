@@ -9,8 +9,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Rollon-Rolloff Redesigned",
-  description: "Premium automotive inventory in Trinidad",
+  title: "R&R Trading Company Limited | Premium Vehicles in Trinidad",
+  description: "R&R Trading Company Limited - Your premier choice for Roll-on/Roll-off vehicles in Trinidad. Driving the difference with quality imports and exceptional service.",
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({

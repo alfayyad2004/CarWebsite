@@ -67,68 +67,133 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
     }
 
     return (
-        <div className="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-            <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                    <thead className="bg-zinc-950 text-zinc-400 border-b border-zinc-800">
-                        <tr>
-                            <th className="p-4 whitespace-nowrap">Vehicle</th>
-                            <th className="p-4 whitespace-nowrap">Status</th>
-                            <th className="p-4 whitespace-nowrap">Price (TTD)</th>
-                            <th className="p-4 whitespace-nowrap text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800">
-                        {vehicles.map((vehicle) => (
-                            <tr key={vehicle.id} className="hover:bg-zinc-800/50 transition-colors">
-                                <td className="p-4">
-                                    <div className="font-bold text-white">{vehicle.year} {vehicle.make} {vehicle.model}</div>
-                                    <div className="text-xs text-zinc-500 font-mono mt-1">{vehicle.id.slice(0, 8)}...</div>
-                                </td>
-                                <td className="p-4">
-                                    <select
-                                        value={vehicle.status}
-                                        onChange={(e) => handleStatusChange(vehicle.id, e.target.value)}
-                                        className={`bg-transparent border rounded px-2 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-white/20 cursor-pointer
-                                            ${vehicle.status === 'In Stock' ? 'bg-green-950 text-green-400 border-green-900' :
-                                                vehicle.status === 'Sold' ? 'bg-red-950 text-red-400 border-red-900' :
-                                                    'bg-yellow-950 text-yellow-400 border-yellow-900'}`}
-                                    >
-                                        <option value="In Stock" className="bg-zinc-900">In Stock</option>
-                                        <option value="In Transit" className="bg-zinc-900">In Transit</option>
-                                        <option value="Sold" className="bg-zinc-900">Sold</option>
-                                    </select>
-                                </td>
-                                <td className="p-4 font-mono text-zinc-300">
-                                    ${vehicle.price_ttd?.toLocaleString()}
-                                </td>
-                                <td className="p-4 text-right whitespace-nowrap">
-                                    <div className="flex justify-end items-center space-x-2">
-                                        <Link href={`/admin/edit/${vehicle.id}`}>
-                                            <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-white hover:bg-zinc-700">
-                                                <Edit className="h-4 w-4" />
-                                            </Button>
-                                        </Link>
-                                        <Button
-                                            size="icon"
-                                            variant="destructive"
-                                            className="h-8 w-8 bg-red-900/20 text-red-500 hover:bg-red-900/50 hover:text-red-400 border border-red-900/50"
-                                            onClick={() => handleDelete(vehicle.id)}
-                                            disabled={loadingId === vehicle.id}
-                                        >
-                                            {loadingId === vehicle.id ? (
-                                                <Loader2 className="h-4 w-4 animate-spin" />
-                                            ) : (
-                                                <Trash2 className="h-4 w-4" />
-                                            )}
-                                        </Button>
-                                    </div>
-                                </td>
+    return (
+        <div className="space-y-4">
+            {/* Mobile View (Cards) */}
+            <div className="grid grid-cols-1 gap-4 md:hidden">
+                {vehicles.map((vehicle) => (
+                    <div key={vehicle.id} className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 space-y-3">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <div className="font-bold text-lg text-white">
+                                    {vehicle.year} {vehicle.make} {vehicle.model}
+                                </div>
+                                <div className="text-xs text-zinc-500 font-mono mt-0.5">#{vehicle.id.slice(0, 8)}</div>
+                            </div>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium border
+                                ${vehicle.status === 'In Stock' ? 'bg-green-950/30 text-green-400 border-green-900/50' :
+                                    vehicle.status === 'Sold' ? 'bg-red-950/30 text-red-400 border-red-900/50' :
+                                        'bg-yellow-950/30 text-yellow-400 border-yellow-900/50'}`}>
+                                {vehicle.status}
+                            </span>
+                        </div>
+
+                        <div className="flex justify-between items-center py-2 border-t border-zinc-800/50">
+                            <span className="text-zinc-400 text-sm">Price</span>
+                            <span className="font-mono text-white font-medium">${vehicle.price_ttd?.toLocaleString()}</span>
+                        </div>
+
+                        <div className="flex items-center justify-between gap-3 pt-2">
+                            <select
+                                value={vehicle.status}
+                                onChange={(e) => handleStatusChange(vehicle.id, e.target.value)}
+                                className="bg-zinc-950 border border-zinc-700 rounded px-3 py-2 text-sm text-zinc-300 focus:outline-none w-full"
+                            >
+                                <option value="In Stock">In Stock</option>
+                                <option value="In Transit">In Transit</option>
+                                <option value="Sold">Sold</option>
+                            </select>
+
+                            <div className="flex items-center gap-2">
+                                <Link href={`/admin/edit/${vehicle.id}`}>
+                                    <Button size="icon" variant="outline" className="h-9 w-9 border-zinc-700 bg-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-700">
+                                        <Edit className="h-4 w-4" />
+                                    </Button>
+                                </Link>
+                                <Button
+                                    size="icon"
+                                    variant="destructive"
+                                    className="h-9 w-9 bg-red-900/20 text-red-500 hover:bg-red-900/40 border border-red-900/50"
+                                    onClick={() => handleDelete(vehicle.id)}
+                                    disabled={loadingId === vehicle.id}
+                                >
+                                    {loadingId === vehicle.id ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <Trash2 className="h-4 w-4" />
+                                    )}
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Desktop View (Table) */}
+            <div className="hidden md:block bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                        <thead className="bg-zinc-950 text-zinc-400 border-b border-zinc-800">
+                            <tr>
+                                <th className="p-4 whitespace-nowrap">Vehicle</th>
+                                <th className="p-4 whitespace-nowrap">Status</th>
+                                <th className="p-4 whitespace-nowrap">Price (TTD)</th>
+                                <th className="p-4 whitespace-nowrap text-right">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-zinc-800">
+                            {vehicles.map((vehicle) => (
+                                <tr key={vehicle.id} className="hover:bg-zinc-800/50 transition-colors">
+                                    <td className="p-4">
+                                        <div className="font-bold text-white">{vehicle.year} {vehicle.make} {vehicle.model}</div>
+                                        <div className="text-xs text-zinc-500 font-mono mt-1">{vehicle.id.slice(0, 8)}...</div>
+                                    </td>
+                                    <td className="p-4">
+                                        <select
+                                            value={vehicle.status}
+                                            onChange={(e) => handleStatusChange(vehicle.id, e.target.value)}
+                                            className={`bg-transparent border rounded px-2 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-white/20 cursor-pointer
+                                                ${vehicle.status === 'In Stock' ? 'bg-green-950 text-green-400 border-green-900' :
+                                                    vehicle.status === 'Sold' ? 'bg-red-950 text-red-400 border-red-900' :
+                                                        'bg-yellow-950 text-yellow-400 border-yellow-900'}`}
+                                        >
+                                            <option value="In Stock" className="bg-zinc-900">In Stock</option>
+                                            <option value="In Transit" className="bg-zinc-900">In Transit</option>
+                                            <option value="Sold" className="bg-zinc-900">Sold</option>
+                                        </select>
+                                    </td>
+                                    <td className="p-4 font-mono text-zinc-300">
+                                        ${vehicle.price_ttd?.toLocaleString()}
+                                    </td>
+                                    <td className="p-4 text-right whitespace-nowrap">
+                                        <div className="flex justify-end items-center space-x-2">
+                                            <Link href={`/admin/edit/${vehicle.id}`}>
+                                                <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-white hover:bg-zinc-700">
+                                                    <Edit className="h-4 w-4" />
+                                                </Button>
+                                            </Link>
+                                            <Button
+                                                size="icon"
+                                                variant="destructive"
+                                                className="h-8 w-8 bg-red-900/20 text-red-500 hover:bg-red-900/50 hover:text-red-400 border border-red-900/50"
+                                                onClick={() => handleDelete(vehicle.id)}
+                                                disabled={loadingId === vehicle.id}
+                                            >
+                                                {loadingId === vehicle.id ? (
+                                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                                ) : (
+                                                    <Trash2 className="h-4 w-4" />
+                                                )}
+                                            </Button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    )
     )
 }
