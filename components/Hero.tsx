@@ -32,6 +32,7 @@ export function Hero() {
                     fill
                     className="object-cover opacity-60"
                     priority
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
@@ -89,8 +90,9 @@ export function Hero() {
                     >
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div className="space-y-1">
-                                <label className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Make</label>
+                                <label htmlFor="make-select" className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Make</label>
                                 <select
+                                    id="make-select"
                                     className="w-full h-12 bg-black/40 border border-white/10 rounded-lg px-4 text-white focus:ring-1 focus:ring-primary outline-none appearance-none"
                                     value={make}
                                     onChange={(e) => setMake(e.target.value)}
@@ -106,8 +108,9 @@ export function Hero() {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Min Price</label>
+                                <label htmlFor="min-price-select" className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Min Price</label>
                                 <select
+                                    id="min-price-select"
                                     className="w-full h-12 bg-black/40 border border-white/10 rounded-lg px-4 text-white focus:ring-1 focus:ring-primary outline-none appearance-none"
                                     value={minPrice}
                                     onChange={(e) => setMinPrice(e.target.value)}
@@ -120,8 +123,9 @@ export function Hero() {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Max Price</label>
+                                <label htmlFor="max-price-select" className="text-xs text-gray-400 ml-1 uppercase tracking-wider">Max Price</label>
                                 <select
+                                    id="max-price-select"
                                     className="w-full h-12 bg-black/40 border border-white/10 rounded-lg px-4 text-white focus:ring-1 focus:ring-primary outline-none appearance-none"
                                     value={maxPrice}
                                     onChange={(e) => setMaxPrice(e.target.value)}

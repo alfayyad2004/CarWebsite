@@ -42,21 +42,21 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">First Name</label>
-                    <Input name="first_name" required className="bg-background border-input" />
+                    <label htmlFor="first_name" className="text-sm font-medium text-muted-foreground">First Name</label>
+                    <Input id="first_name" name="first_name" required className="bg-background border-input" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Last Name</label>
-                    <Input name="last_name" required className="bg-background border-input" />
+                    <label htmlFor="last_name" className="text-sm font-medium text-muted-foreground">Last Name</label>
+                    <Input id="last_name" name="last_name" required className="bg-background border-input" />
                 </div>
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Email Address</label>
-                <Input type="email" name="email" required className="bg-background border-input" />
+                <label htmlFor="email" className="text-sm font-medium text-muted-foreground">Email Address</label>
+                <Input id="email" type="email" name="email" required className="bg-background border-input" />
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Message</label>
-                <Textarea name="message" required className="bg-background border-input min-h-[150px]" />
+                <label htmlFor="message" className="text-sm font-medium text-muted-foreground">Message</label>
+                <Textarea id="message" name="message" required className="bg-background border-input min-h-[150px]" />
             </div>
 
             <Button disabled={loading} className="w-full h-12 text-base font-semibold bg-white text-black hover:bg-zinc-200">

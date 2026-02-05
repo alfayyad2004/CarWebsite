@@ -67,7 +67,6 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
     }
 
     return (
-    return (
         <div className="space-y-4">
             {/* Mobile View (Cards) */}
             <div className="grid grid-cols-1 gap-4 md:hidden">
@@ -194,6 +193,5 @@ export function AdminVehicleList({ initialVehicles }: { initialVehicles: Vehicle
                 </div>
             </div>
         </div>
-    )
     )
 }

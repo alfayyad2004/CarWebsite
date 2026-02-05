@@ -48,11 +48,11 @@ export function Header() {
                 <div className="flex items-center space-x-4">
                     {/* Mobile Search - just link to inventory */}
                     <Link href="/inventory" className="md:hidden">
-                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" aria-label="Search Inventory">
                             <Search className="h-5 w-5" />
                         </Button>
                     </Link>
-                    <Button variant="premium" className="hidden md:inline-flex">
+                    <Button variant="premium" className="hidden md:inline-flex" aria-label="Contact via WhatsApp">
                         <Phone className="mr-2 h-4 w-4" />
                         WhatsApp Us
                     </Button>
@@ -61,6 +61,7 @@ export function Header() {
                         size="icon"
                         className="text-white md:hidden hover:bg-white/10"
                         onClick={() => setIsMenuOpen(true)}
+                        aria-label="Open Menu"
                     >
                         <Menu className="h-6 w-6" />
                     </Button>

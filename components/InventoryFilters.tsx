@@ -44,8 +44,9 @@ export function InventoryFilters() {
                 <h3 className="text-lg font-semibold mb-4">Filter Vehicles</h3>
                 <div className="space-y-4">
                     <div className="space-y-2">
-                        <Label>Search</Label>
+                        <Label htmlFor="inventory-search">Search</Label>
                         <Input
+                            id="inventory-search"
                             placeholder="e.g. Corolla, SUV..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -53,8 +54,9 @@ export function InventoryFilters() {
                     </div>
 
                     <div className="space-y-2">
-                        <Label>Make</Label>
+                        <Label htmlFor="make-filter">Make</Label>
                         <select
+                            id="make-filter"
                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                             value={make}
                             onChange={(e) => setMake(e.target.value)}
@@ -71,8 +73,9 @@ export function InventoryFilters() {
 
                     <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-2">
-                            <Label>Min Price</Label>
+                            <Label htmlFor="min-price-filter">Min Price</Label>
                             <Input
+                                id="min-price-filter"
                                 type="number"
                                 placeholder="0"
                                 value={minPrice}
@@ -80,8 +83,9 @@ export function InventoryFilters() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label>Max Price</Label>
+                            <Label htmlFor="max-price-filter">Max Price</Label>
                             <Input
+                                id="max-price-filter"
                                 type="number"
                                 placeholder="Max"
                                 value={maxPrice}

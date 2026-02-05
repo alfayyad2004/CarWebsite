@@ -28,7 +28,7 @@ export function BrandMarquee() {
                 {/* First copy */}
                 <div className="flex items-center space-x-16 mx-8">
                     {BRANDS.map((brand) => (
-                        <span key={brand} className="text-2xl font-black tracking-widest text-zinc-700 hover:text-white transition-colors cursor-default select-none">
+                        <span key={brand} className="text-2xl font-black tracking-widest text-zinc-500 hover:text-white transition-colors cursor-default select-none">
                             {brand}
                         </span>
                     ))}

@@ -43,6 +43,7 @@ export function AdminHeader() {
                             size="icon"
                             onClick={handleLogout}
                             className="h-8 w-8 bg-red-900/20 text-red-400 border border-red-900/50"
+                            aria-label="Logout"
                         >
                             <LogOut className="h-4 w-4" />
                         </Button>
