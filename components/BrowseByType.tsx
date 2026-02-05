@@ -7,10 +7,10 @@ import { Car, Truck, Sparkles, Tag } from 'lucide-react'
 const CATEGORIES = [
     {
         title: "Roll On Roll Off",
-        description: "Fresh imports, pristine condition",
+        description: "Fresh imports, e.g. Nissan Note, Aqua",
         href: "/inventory?condition=RORO",
         icon: Car,
-        image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2070&auto=format&fit=crop", // Clean white car/moden
+        image: "https://images.unsplash.com/photo-1596658591032-4d5154388e36?q=80&w=2070&auto=format&fit=crop", // Compact/Hatchback similar to Note
         color: "from-blue-600 to-blue-900"
     },
     {
@@ -18,23 +18,23 @@ const CATEGORIES = [
         description: "Quality pre-owned vehicles",
         href: "/inventory?condition=Local%20Used",
         icon: Tag,
-        image: "https://images.unsplash.com/photo-1503376763036-066120622c74?q=80&w=2070&auto=format&fit=crop", // Street setting
+        image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop", // Ford/Sporty/Local looking
         color: "from-emerald-600 to-emerald-900"
     },
     {
         title: "Commercial & Trucks",
-        description: "Heavy duty workhorses",
+        description: "Hilux, Ranger & Workhorses",
         href: "/inventory?type=Truck",
         icon: Truck,
-        image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop", // Truck
+        image: "https://images.unsplash.com/photo-1566936306511-2c0697ad4887?q=80&w=2070&auto=format&fit=crop", // Pickup Truck (Hilux style)
         color: "from-orange-600 to-orange-900"
     },
     {
         title: "New Arrivals",
-        description: "Just landed in Trinidad",
+        description: "Just landed inventory",
         href: "/inventory?sort=newest",
         icon: Sparkles,
-        image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2070&auto=format&fit=crop", // Luxury/Showroom
+        image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=2070&auto=format&fit=crop", // Ford Ranger/Raptor vibe
         color: "from-purple-600 to-purple-900"
     }
 ]

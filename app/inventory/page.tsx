@@ -34,7 +34,8 @@ export default async function InventoryPage({
     const to = from + PAGE_SIZE - 1
 
     if (q) {
-        query = query.textSearch('fts', q, { type: 'websearch', config: 'english' })
+        // Search in Make OR Model using ilike for partial matching
+        query = query.or(`make.ilike.%${q}%,model.ilike.%${q}%`)
     }
     if (make) {
         query = query.eq('make', make)

@@ -6,13 +6,13 @@ import { Badge } from 'lucide-react'; // Placeholder for Badge component if usin
 import { motion } from 'framer-motion';
 
 // Simple Badge component since we didn't add shadcn badge
+// Simple Badge component
 function StatusBadge({ status }: { status: string }) {
-    const colors = {
+    const colors: Record<string, string> = {
         'In Stock': 'bg-green-500/20 text-green-400 border-green-500/50',
         'In Transit': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
         'Sold': 'bg-red-500/20 text-red-400 border-red-500/50',
     };
-    // @ts-ignore
     const colorClass = colors[status] || 'bg-gray-500/20 text-gray-400';
 
     return (
@@ -22,19 +22,28 @@ function StatusBadge({ status }: { status: string }) {
     );
 }
 
-export function VehicleCard({ vehicle }: { vehicle: any }) {
-    // Fallback image if no images array or empty
-    const imageUrl = vehicle.images && vehicle.images.length > 0
+interface VehicleCardProps {
+    vehicle: any;
+}
+
+const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+};
+
+export function VehicleCard({ vehicle }: VehicleCardProps) {
+    // Check if vehicle and specs exist before accessing
+    if (!vehicle) return null;
+    const specs = vehicle.specs || {};
+    const price = vehicle.price_ttd ? new Intl.NumberFormat('en-TT', { style: 'currency', currency: 'TTD', maximumFractionDigits: 0 }).format(vehicle.price_ttd) : 'Price TBD';
+
+    // Fallback Image Logic: Check if images exist and is an array with at least one item
+    const imageUrl = (vehicle.images && Array.isArray(vehicle.images) && vehicle.images.length > 0)
         ? vehicle.images[0]
-        : null; // Handling null in render
+        : null;
 
     return (
-        <motion.div
-            whileHover={{ y: -5 }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="group relative bg-card border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-primary/10 transition-all duration-300"
-        >
+        <motion.div variants={item} whileHover={{ y: -5 }} transition={{ type: 'spring', stiffness: 300 }}>
             <Link href={`/inventory/${vehicle.id}`}>
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                     {imageUrl ? (
@@ -81,6 +90,6 @@ export function VehicleCard({ vehicle }: { vehicle: any }) {
                     </Button>
                 </div>
             </Link>
-        </motion.div>
+        </motion.div >
     );
 }
